@@ -1,3 +1,0 @@
-# OrbHive
-
-OrbHive private repo
