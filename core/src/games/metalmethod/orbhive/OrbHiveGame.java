@@ -13,7 +13,8 @@ public class OrbHiveGame extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+//		img = new Texture("orbhive_title.png");
+		img = new Texture("sprites.png");
 	}
 
 	@Override

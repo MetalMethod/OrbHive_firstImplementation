@@ -7,6 +7,11 @@ import games.metalmethod.orbhive.OrbHiveGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+
+		config.title = "OrbHive";
+		config.width = 455;
+		config.height = 256;
+
 		new LwjglApplication(new OrbHiveGame(), config);
 	}
 }
