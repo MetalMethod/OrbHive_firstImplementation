@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class AssetLoader {
     public static Texture sprites;
     public static TextureRegion bg;
-    public static TextureRegion playerFull, playerMid, playerLow;
+    public static TextureRegion playerFull, playerMid, playerLast;
 
     public static void load() {
         sprites = new Texture(Gdx.files.internal("sprites.png"));
@@ -16,19 +16,33 @@ public class AssetLoader {
         sprites.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
 
         bg = new TextureRegion(sprites, 224, 0, 32, 256);
-        // image must be flipped because default coordinate system is Y Up and this game uses U Down
-
-       // bg.flip(false, true);
 
         playerFull = new TextureRegion(
                 sprites,
                 0,
                 0,
-                50,
-                50
+                39,
+                40
         );
+        playerMid = new TextureRegion(
+                sprites,
+                40,
+                0,
+                39,
+                40
+        );
+        playerLast = new TextureRegion(
+                sprites,
+                79,
+                0,
+                39,
+                40
+        );
+        // image must be flipped because default coordinate system is Y Up and this game uses U Down
         playerFull.flip(false, true);
-//
+        playerMid.flip(false, true);
+        playerLast.flip(false, true);
+
 //        grass = new TextureRegion(sprites, 0, 43, 143, 11);
 //        grass.flip(false, true);
 //

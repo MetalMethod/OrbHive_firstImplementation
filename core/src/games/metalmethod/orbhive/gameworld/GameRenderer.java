@@ -61,27 +61,15 @@ public class GameRenderer {
 
     private void initGameObjects() {
 //        player = gameWorld.getPlayer();
-
-
         //scrollHandler = gameWorld.getScrollHandler();
-
-        //frontGrass = scrollHandler.getFrontGrass();
-        //backGrass = scrollHandler.getBackGrass();
-
     }
 
     private void initAssets() {
         bg = AssetLoader.bg;
         playerFull = AssetLoader.playerFull;
+        playerMid = AssetLoader.playerMid;
+        playerLast = AssetLoader.playerLast;
     }
-//
-//    private void drawGrass() {
-//        // Draw the grass
-//        batcher.draw(grass, frontGrass.getX(), frontGrass.getY(),
-//                frontGrass.getWidth(), frontGrass.getHeight());
-//        batcher.draw(grass, backGrass.getX(), backGrass.getY(),
-//                backGrass.getWidth(), backGrass.getHeight());
-// }
 
     /**
      * runTime is reponsible to determine which frame the bird animation should display.
@@ -95,18 +83,18 @@ public class GameRenderer {
         fillBlackBg();
 
         // Draw non-bitmap elements
-//        drawShapes();
+        drawShapes();
 
         // Begin SpriteBatch
         batcher.begin();
         // Disable transparency - this is good for performance when drawing images that do not require transparency.
         batcher.disableBlending();
 
-        drawBgTexture();
+        //drawBgTexture();
 
         // Draw elements that require transparency
         batcher.enableBlending();
-  //      drawPlayer(runTime);
+        drawPlayer(runTime);
 
         // End SpriteBatch
         batcher.end();
@@ -123,29 +111,27 @@ public class GameRenderer {
 
         // Draw Background color
         shapeRenderer.setColor(128 / 255.0f, 128 / 255.0f, 128 / 255.0f, 1);
-        shapeRenderer.rect(0, 0, 136, midPointY + 66);
+        shapeRenderer.rect(0, 0, 455, 256);
 
-        // Draw Grass
-        shapeRenderer.setColor(45 / 255.0f, 45 / 255.0f, 45 / 255.0f, 1);
-        shapeRenderer.rect(0, midPointY + 66, 136, 11);
-
-        // Draw Dirt
-        shapeRenderer.setColor(27 / 255.0f, 27 / 255.0f, 27 / 255.0f, 1);
-        shapeRenderer.rect(0, midPointY + 77, 136, 52);
+//        // Draw Grass
+//        shapeRenderer.setColor(45 / 255.0f, 45 / 255.0f, 45 / 255.0f, 1);
+//        shapeRenderer.rect(0, midPointY + 66, 136, 11);
+//
+//        // Draw Dirt
+//        shapeRenderer.setColor(27 / 255.0f, 27 / 255.0f, 27 / 255.0f, 1);
+//        shapeRenderer.rect(0, midPointY + 77, 136, 52);
 
         // End ShapeRenderer
         shapeRenderer.end();
     }
 
     private void drawBgTexture() {
-        // batcher.draw(AssetLoader.bg, 0, midPointY + 23, 136, 43);
-        int w = 32;
+        int width = 32;
         int windowWidth = 455;
-        int d = 0;
         int x = 0;
         while(windowWidth > x){
-            batcher.draw(AssetLoader.bg, x, 0, 32, 256);
-            x += w;
+            batcher.draw(bg, x, 0, width, 256);
+            x += width;
         }
     }
 
@@ -163,8 +149,12 @@ public class GameRenderer {
 //    }
 
     private void drawPlayer(float runTime) {
+        TextureRegion playerState;
+
+        playerState = playerFull;
+
         batcher.draw(
-                playerFull,
+                playerState,
                 50,
                 50,
                 50,
@@ -172,7 +162,8 @@ public class GameRenderer {
                 40,
                 40,
                 1, 1,
-                0);
+                0
+        );
     }
 
 }
