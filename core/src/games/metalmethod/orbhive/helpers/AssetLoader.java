@@ -5,38 +5,40 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class AssetLoader {
-    public static Texture texture;
+    public static Texture sprites;
     public static TextureRegion bg;
     public static TextureRegion playerFull, playerMid, playerLow;
 
     public static void load() {
-        texture = new Texture(Gdx.files.internal("sprites.png"));
+        sprites = new Texture(Gdx.files.internal("sprites.png"));
 
         // filters for pixel art, nearest neighbor scaling up
-        texture.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
+        sprites.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
 
-        bg = new TextureRegion(texture, 224, 0, 100, 256);
+        bg = new TextureRegion(sprites, 224, 0, 32, 256);
         // image must be flipped because default coordinate system is Y Up and this game uses U Down
-        bg.flip(false, true);
+
+       // bg.flip(false, true);
 
         playerFull = new TextureRegion(
-                texture,
-                50,
-                50,
+                sprites,
+                0,
+                0,
                 50,
                 50
         );
+        playerFull.flip(false, true);
 //
-//        grass = new TextureRegion(texture, 0, 43, 143, 11);
+//        grass = new TextureRegion(sprites, 0, 43, 143, 11);
 //        grass.flip(false, true);
 //
-//        birdDown = new TextureRegion(texture, 136, 0, 17, 12);
+//        birdDown = new TextureRegion(sprites, 136, 0, 17, 12);
 //        birdDown.flip(false, true);
 //
-//        bird = new TextureRegion(texture, 153, 0, 17, 12);
+//        bird = new TextureRegion(sprites, 153, 0, 17, 12);
 //        bird.flip(false, true);
 //
-//        birdUp = new TextureRegion(texture, 170, 0, 17, 12);
+//        birdUp = new TextureRegion(sprites, 170, 0, 17, 12);
 //        birdUp.flip(false, true);
 
 
@@ -47,8 +49,8 @@ public class AssetLoader {
 //        birdAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
     }
 
+        // We must dispose of the sprites whens we are finished.
     public static void dispose() {
-        // We must dispose of the texture when we are finished.
-        texture.dispose();
+        sprites.dispose();
     }
 }

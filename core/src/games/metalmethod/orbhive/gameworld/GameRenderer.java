@@ -46,7 +46,7 @@ public class GameRenderer {
         this.midPointY = midPointY;
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(true, 136, 204);
+        camera.setToOrtho(true, 455, 256);
 
         batcher = new SpriteBatch();
         //Attatch Batch to camera
@@ -95,7 +95,7 @@ public class GameRenderer {
         fillBlackBg();
 
         // Draw non-bitmap elements
-        drawShapes();
+//        drawShapes();
 
         // Begin SpriteBatch
         batcher.begin();
@@ -106,7 +106,7 @@ public class GameRenderer {
 
         // Draw elements that require transparency
         batcher.enableBlending();
-        drawPlayer(runTime);
+  //      drawPlayer(runTime);
 
         // End SpriteBatch
         batcher.end();
@@ -138,7 +138,15 @@ public class GameRenderer {
     }
 
     private void drawBgTexture() {
-        batcher.draw(AssetLoader.bg, 0, midPointY + 23, 136, 43);
+        // batcher.draw(AssetLoader.bg, 0, midPointY + 23, 136, 43);
+        int w = 32;
+        int windowWidth = 455;
+        int d = 0;
+        int x = 0;
+        while(windowWidth > x){
+            batcher.draw(AssetLoader.bg, x, 0, 32, 256);
+            x += w;
+        }
     }
 
 //    private void drawPlayer(float runTime) {
