@@ -9,8 +9,8 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
 		config.title = "OrbHive";
-		config.width = 455;
-		config.height = 256;
+		config.width = 455 *2;
+		config.height = 256 *2;
 
 		new LwjglApplication(new OrbHiveGame(), config);
 	}

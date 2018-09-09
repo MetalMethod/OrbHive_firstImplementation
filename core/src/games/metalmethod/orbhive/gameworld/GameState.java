@@ -1,4 +1,8 @@
 package games.metalmethod.orbhive.gameworld;
 
-public class GameState {
+public enum GameState {
+    READY,
+    RUNNING,
+    GAMEOVER
 }
+
