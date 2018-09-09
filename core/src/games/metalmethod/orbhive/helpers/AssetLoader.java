@@ -43,19 +43,6 @@ public class AssetLoader {
         playerMid.flip(false, true);
         playerLast.flip(false, true);
 
-//        grass = new TextureRegion(sprites, 0, 43, 143, 11);
-//        grass.flip(false, true);
-//
-//        birdDown = new TextureRegion(sprites, 136, 0, 17, 12);
-//        birdDown.flip(false, true);
-//
-//        bird = new TextureRegion(sprites, 153, 0, 17, 12);
-//        bird.flip(false, true);
-//
-//        birdUp = new TextureRegion(sprites, 170, 0, 17, 12);
-//        birdUp.flip(false, true);
-
-
 //        TextureRegion[] birds = { birdDown, bird, birdUp };
 //        // Creates a new Animation in which each frame is 0.06 seconds long, using the above array.
 //        birdAnimation = new Animation(0.06f, birds);

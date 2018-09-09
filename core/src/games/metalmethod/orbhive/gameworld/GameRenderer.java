@@ -79,24 +79,20 @@ public class GameRenderer {
      */
     public void render(float runTime) {
 
-        // Fill the entire screen with black, to prevent potential flickering.
-        fillBlackBg();
-
         // Draw non-bitmap elements
         drawShapes();
 
-        // Begin SpriteBatch
         batcher.begin();
+
         // Disable transparency - this is good for performance when drawing images that do not require transparency.
         batcher.disableBlending();
 
-        //drawBgTexture();
+        drawBgTexture();
 
         // Draw elements that require transparency
         batcher.enableBlending();
         drawPlayer(runTime);
 
-        // End SpriteBatch
         batcher.end();
     }
 
@@ -106,22 +102,12 @@ public class GameRenderer {
     }
 
     private void drawShapes() {
-        // Begin ShapeRenderer
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
         // Draw Background color
         shapeRenderer.setColor(128 / 255.0f, 128 / 255.0f, 128 / 255.0f, 1);
         shapeRenderer.rect(0, 0, 455, 256);
 
-//        // Draw Grass
-//        shapeRenderer.setColor(45 / 255.0f, 45 / 255.0f, 45 / 255.0f, 1);
-//        shapeRenderer.rect(0, midPointY + 66, 136, 11);
-//
-//        // Draw Dirt
-//        shapeRenderer.setColor(27 / 255.0f, 27 / 255.0f, 27 / 255.0f, 1);
-//        shapeRenderer.rect(0, midPointY + 77, 136, 52);
-
-        // End ShapeRenderer
         shapeRenderer.end();
     }
 
@@ -129,29 +115,14 @@ public class GameRenderer {
         int width = 32;
         int windowWidth = 455;
         int x = 0;
-        while(windowWidth > x){
+        while (windowWidth > x) {
             batcher.draw(bg, x, 0, width, 256);
             x += width;
         }
     }
 
-//    private void drawPlayer(float runTime) {
-//        batcher.draw(
-//                birdMid,
-//                player.getX(),
-//                player.getY(),
-//                player.getWidth() / 2.0f,
-//                player.getHeight() / 2.0f,
-//                player.getWidth(),
-//                player.getHeight(),
-//                1, 1,
-//                player.getRotation());
-//    }
-
     private void drawPlayer(float runTime) {
-        TextureRegion playerState;
-
-        playerState = playerFull;
+        TextureRegion playerState = playerFull;
 
         batcher.draw(
                 playerState,
