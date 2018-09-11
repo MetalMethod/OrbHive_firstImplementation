@@ -1,4 +1,4 @@
-package games.metalmethod.orbhive.gameworld;
+package games.metalmethod.orbhive.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -8,8 +8,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-import games.metalmethod.orbhive.gameobjects.Player;
-import games.metalmethod.orbhive.helpers.AssetLoader;
+import games.metalmethod.orbhive.model.gameobjects.Player;
+import games.metalmethod.orbhive.model.gameworld.GameWorld;
+import games.metalmethod.orbhive.controller.AssetLoader;
 
 public class GameRenderer {
 

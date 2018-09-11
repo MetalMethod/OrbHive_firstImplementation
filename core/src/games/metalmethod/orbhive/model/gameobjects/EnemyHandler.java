@@ -1,4 +1,4 @@
-package games.metalmethod.orbhive.gameobjects;
+package games.metalmethod.orbhive.model.gameobjects;
 
 public class EnemyHandler {
 }

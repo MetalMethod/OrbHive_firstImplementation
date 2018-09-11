@@ -3,8 +3,8 @@ package games.metalmethod.orbhive;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
-import games.metalmethod.orbhive.helpers.AssetLoader;
-import games.metalmethod.orbhive.screens.GameScreen;
+import games.metalmethod.orbhive.controller.AssetLoader;
+import games.metalmethod.orbhive.view.screens.GameScreen;
 
 public class OrbHiveGame extends Game {
 

@@ -1,7 +1,7 @@
-package games.metalmethod.orbhive.helpers;
+package games.metalmethod.orbhive.controller;
 
 import com.badlogic.gdx.InputProcessor;
-import games.metalmethod.orbhive.gameworld.GameWorld;
+import games.metalmethod.orbhive.model.gameworld.GameWorld;
 
 public class InputHandler implements InputProcessor {
 
