@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import games.metalmethod.orbhive.gameworld.GameRenderer;
 import games.metalmethod.orbhive.gameworld.GameWorld;
-import games.metalmethod.orbhive.helpers.InputHandler;
+import games.metalmethod.orbhive.controller.InputHandler;
 
 public class GameScreen implements Screen {
 
