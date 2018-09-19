@@ -1,11 +1,14 @@
 package games.metalmethod.orbhive.controller;
 
 import com.badlogic.gdx.InputProcessor;
+import games.metalmethod.orbhive.model.gameobjects.Player;
 import games.metalmethod.orbhive.model.gameworld.GameWorld;
 
 public class InputHandler implements InputProcessor {
 
     private GameWorld gameWorld;
+
+//    private Player player = new Player();
 
     public InputHandler(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
