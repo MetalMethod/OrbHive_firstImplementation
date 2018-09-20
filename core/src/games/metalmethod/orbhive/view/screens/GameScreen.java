@@ -9,7 +9,7 @@ import games.metalmethod.orbhive.view.InputHandler;
 public class GameScreen implements Screen {
 
     private float runTime = 0;
-    private TextureHandler gameRenderer;
+    private TextureHandler textureHandler;
     private GameWorld gameWorld;
 
     public GameScreen(){
@@ -21,7 +21,7 @@ public class GameScreen implements Screen {
         int midPointY = (int) (gameHeight / 2);
 
         gameWorld = new GameWorld(midPointY);
-        gameRenderer = new TextureHandler(gameWorld, (int)gameHeight, midPointY);
+        textureHandler = new TextureHandler(gameWorld, (int)gameHeight, midPointY);
 
         // Binds the inputHandler to the character
         Gdx.input.setInputProcessor(new InputHandler(gameWorld));
@@ -31,7 +31,7 @@ public class GameScreen implements Screen {
     public void render(float delta) {
         runTime += delta;
        // gameWorld.update(delta);
-        gameRenderer.render(runTime);
+        textureHandler.render(runTime);
     }
 
     @Override

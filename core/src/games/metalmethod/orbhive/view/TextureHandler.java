@@ -3,6 +3,7 @@ package games.metalmethod.orbhive.view;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -13,6 +14,7 @@ import games.metalmethod.orbhive.model.gameworld.GameWorld;
 
 public class TextureHandler {
 
+    private Texture sprites;
     private GameWorld gameWorld;
     private OrthographicCamera camera;
 
@@ -41,6 +43,8 @@ public class TextureHandler {
     private TextureRegion playerFull, playerMid, playerLast;
 
     public TextureHandler(GameWorld gameWorld, int gameHeight, int midPointY) {
+        this.sprites = AssetLoader.getSprites();
+
         this.gameWorld = gameWorld;
         this.gameHeight = gameHeight;
         this.midPointY = midPointY;
@@ -65,10 +69,40 @@ public class TextureHandler {
     }
 
     private void initAssets() {
-        bg = AssetLoader.bg;
-        playerFull = AssetLoader.playerFull;
-        playerMid = AssetLoader.playerMid;
-        playerLast = AssetLoader.playerLast;
+
+        bg = new TextureRegion(sprites, 224, 0, 32, 256);
+
+        playerFull = new TextureRegion(
+                sprites,
+                0,
+                0,
+                39,
+                40
+        );
+        playerMid = new TextureRegion(
+                sprites,
+                40,
+                0,
+                39,
+                40
+        );
+        playerLast = new TextureRegion(
+                sprites,
+                79,
+                0,
+                39,
+                40
+        );
+        // image must be flipped because default coordinate system is Y Up and this game uses U Down
+        playerFull.flip(false, true);
+        playerMid.flip(false, true);
+        playerLast.flip(false, true);
+
+//        TextureRegion[] birds = { birdDown, bird, birdUp };
+//        // Creates a new Animation in which each frame is 0.06 seconds long, using the above array.
+//        birdAnimation = new Animation(0.06f, birds);
+//        // Sets play mode to be ping pong, in which we will see a bounce.
+//        birdAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
     }
 
     /**
