@@ -2,14 +2,14 @@ package games.metalmethod.orbhive.view.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import games.metalmethod.orbhive.view.GameRenderer;
+import games.metalmethod.orbhive.view.TextureHandler;
 import games.metalmethod.orbhive.model.gameworld.GameWorld;
-import games.metalmethod.orbhive.controller.InputHandler;
+import games.metalmethod.orbhive.view.InputHandler;
 
 public class GameScreen implements Screen {
 
     private float runTime = 0;
-    private GameRenderer gameRenderer;
+    private TextureHandler gameRenderer;
     private GameWorld gameWorld;
 
     public GameScreen(){
@@ -21,7 +21,7 @@ public class GameScreen implements Screen {
         int midPointY = (int) (gameHeight / 2);
 
         gameWorld = new GameWorld(midPointY);
-        gameRenderer = new GameRenderer(gameWorld, (int)gameHeight, midPointY);
+        gameRenderer = new TextureHandler(gameWorld, (int)gameHeight, midPointY);
 
         // Binds the inputHandler to the character
         Gdx.input.setInputProcessor(new InputHandler(gameWorld));

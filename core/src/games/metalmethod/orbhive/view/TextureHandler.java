@@ -10,9 +10,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import games.metalmethod.orbhive.model.gameobjects.Player;
 import games.metalmethod.orbhive.model.gameworld.GameWorld;
-import games.metalmethod.orbhive.controller.AssetLoader;
 
-public class GameRenderer {
+public class TextureHandler {
 
     private GameWorld gameWorld;
     private OrthographicCamera camera;
@@ -41,7 +40,7 @@ public class GameRenderer {
     private Animation playerAnimation;
     private TextureRegion playerFull, playerMid, playerLast;
 
-    public GameRenderer(GameWorld gameWorld, int gameHeight, int midPointY) {
+    public TextureHandler(GameWorld gameWorld, int gameHeight, int midPointY) {
         this.gameWorld = gameWorld;
         this.gameHeight = gameHeight;
         this.midPointY = midPointY;

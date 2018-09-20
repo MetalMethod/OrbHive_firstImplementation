@@ -1,32 +1,24 @@
 package games.metalmethod.orbhive.controller;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import games.metalmethod.orbhive.model.gameworld.GameWorld;
-import games.metalmethod.orbhive.view.GameRenderer;
 
-public class Controller {
+import games.metalmethod.orbhive.view.AssetLoader;
+import games.metalmethod.orbhive.view.screens.GameScreen;
 
-    private InputHandler inputHandler;
+public class Controller extends Game {
 
-    public Controller(){
-        //this.inputHandler = inputHandler;
+    @Override
+    public void create() {
+        Gdx.app.log("Controller", "created");
 
-//        gameWorld = new GameWorld(midPointY);
-
-        // Binds the inputHandler to the character
-
-    }
-
-    public static void loadAssets(){
         AssetLoader.load();
+        setScreen(new GameScreen());
     }
 
-    public static void disposeAssets(){
+    @Override
+    public void dispose() {
+        super.dispose();
         AssetLoader.dispose();
     }
-
-    public static void onPlayerKeyForward(){
-
-    }
-
 }

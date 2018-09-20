@@ -1,4 +1,4 @@
-package games.metalmethod.orbhive.controller;
+package games.metalmethod.orbhive.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;

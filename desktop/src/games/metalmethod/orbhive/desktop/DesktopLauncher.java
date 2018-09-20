@@ -2,7 +2,7 @@ package games.metalmethod.orbhive.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import games.metalmethod.orbhive.OrbHiveGame;
+import games.metalmethod.orbhive.controller.Controller;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
@@ -12,6 +12,6 @@ public class DesktopLauncher {
 		config.width = 455 *2;
 		config.height = 256 *2;
 
-		new LwjglApplication(new OrbHiveGame(), config);
+		new LwjglApplication(new Controller(), config);
 	}
 }
