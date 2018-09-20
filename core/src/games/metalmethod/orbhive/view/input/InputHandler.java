@@ -1,4 +1,4 @@
-package games.metalmethod.orbhive.view;
+package games.metalmethod.orbhive.view.input;
 
 import com.badlogic.gdx.InputProcessor;
 import games.metalmethod.orbhive.model.gameobjects.Player;

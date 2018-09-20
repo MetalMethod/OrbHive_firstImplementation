@@ -1,4 +1,4 @@
-package games.metalmethod.orbhive.view;
+package games.metalmethod.orbhive.view.assets;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;

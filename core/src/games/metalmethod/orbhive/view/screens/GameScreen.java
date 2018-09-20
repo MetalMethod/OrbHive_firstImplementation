@@ -2,9 +2,9 @@ package games.metalmethod.orbhive.view.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import games.metalmethod.orbhive.view.TextureHandler;
+import games.metalmethod.orbhive.view.assets.TextureHandler;
 import games.metalmethod.orbhive.model.gameworld.GameWorld;
-import games.metalmethod.orbhive.view.InputHandler;
+import games.metalmethod.orbhive.view.input.InputHandler;
 
 public class GameScreen implements Screen {
 
