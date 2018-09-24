@@ -119,6 +119,6 @@ public class Controller extends Game {
     }
 
     public boolean isPlayerDying() {
-        return false;
+        return true;
     }
 }

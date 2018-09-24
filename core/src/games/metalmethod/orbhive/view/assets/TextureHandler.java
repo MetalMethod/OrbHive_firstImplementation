@@ -130,20 +130,18 @@ public class TextureHandler {
         engineAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 
         playerExplosionOne = new TextureRegion(sprites, 37, 193, 32, 32);
-        playerExplosionOne.flip(false, true);
         playerExplosionTwo = new TextureRegion(sprites, 68, 193, 32, 32);
-        playerExplosionTwo.flip(false, true);
         playerExplosionThree = new TextureRegion(sprites, 98, 193, 32, 32);
-        playerExplosionThree.flip(false, true);
         playerExplosionFour = new TextureRegion(sprites, 129, 193, 32, 32);
-        playerExplosionFour.flip(false, true);
         playerExplosionFive = new TextureRegion(sprites, 161, 193, 32, 32);
-        playerExplosionFive.flip(false, true);
         playerExplosionSix = new TextureRegion(sprites, 192, 193, 32, 32);
+        playerExplosionOne.flip(false, true);
+        playerExplosionTwo.flip(false, true);
+        playerExplosionThree.flip(false, true);
+        playerExplosionFour.flip(false, true);
+        playerExplosionFive.flip(false, true);
         playerExplosionSix.flip(false, true);
-
         TextureRegion[] playerExplosions = {playerExplosionOne, playerExplosionTwo, playerExplosionThree, playerExplosionFour, playerExplosionFive, playerExplosionSix};
-
         playerExplosionAnimation = new Animation(0.15f, (Object[]) playerExplosions);
         playerExplosionAnimation.setPlayMode(Animation.PlayMode.NORMAL);
 
