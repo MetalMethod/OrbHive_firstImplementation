@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import games.metalmethod.orbhive.controller.Controller;
+import games.metalmethod.orbhive.model.Constants;
 import games.metalmethod.orbhive.model.gameobjects.Player;
 import games.metalmethod.orbhive.model.gameworld.GameWorld;
 
@@ -121,8 +122,7 @@ public class TextureHandler {
      */
     public void render(float runTime) {
 
-        // Draw non-bitmap elements
-        drawShapes();
+        drawBackgroundColor();
 
         batcher.begin();
 
@@ -136,21 +136,14 @@ public class TextureHandler {
         drawPlayer(runTime);
 
         batcher.end();
+
+        // Draw non-bitmap elements
+        //drawPlayerBoundingRect();
     }
 
     private void fillBlackBg() {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-    }
-
-    private void drawShapes() {
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-
-        // Draw Background color
-        shapeRenderer.setColor(128 / 255.0f, 128 / 255.0f, 128 / 255.0f, 1);
-        shapeRenderer.rect(0, 0, 455, 256);
-
-        shapeRenderer.end();
     }
 
     private void drawBgTexture() {
@@ -172,12 +165,46 @@ public class TextureHandler {
                 ((int) player.getPosition().y),
                 50,
                 50,
-                player.getWidth(),
-                player.getHeight(),
+                Constants.playerSize,
+                Constants.playerSize,
                 1, 1,
                 0
         );
     }
 
+
+    private void drawShapes() {
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+
+//        // Draw Background color
+//        shapeRenderer.setColor(128 / 255.0f, 128 / 255.0f, 128 / 255.0f, 1);
+//        shapeRenderer.rect(0, 0, 455, 256);
+
+        // Draw player bounding rectangle
+        shapeRenderer.setColor(255f, 0f, 0f, 0f);
+        shapeRenderer.rect(player.getBoundingRectangle().x, player.getBoundingRectangle().y, player.getWidth(), player.getHeight());
+
+        shapeRenderer.end();
+    }
+
+    private void drawBackgroundColor() {
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+
+        // Draw Background color
+        shapeRenderer.setColor(128 / 255.0f, 128 / 255.0f, 128 / 255.0f, 1);
+        shapeRenderer.rect(0, 0, 455, 256);
+
+        shapeRenderer.end();
+    }
+
+    private void drawPlayerBoundingRect() {
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+
+        // Draw player bounding rectangle
+        shapeRenderer.setColor(255f, 0f, 0f, 0f);
+        shapeRenderer.rect(player.getBoundingRectangle().x, player.getBoundingRectangle().y, player.getWidth(), player.getHeight());
+
+        shapeRenderer.end();
+    }
 }
 

@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import games.metalmethod.orbhive.controller.Controller;
 import games.metalmethod.orbhive.model.gameworld.GameWorld;
 import games.metalmethod.orbhive.view.assets.TextureHandler;
+import games.metalmethod.orbhive.model.Constants;
 
 public abstract class View implements Screen {
 
@@ -26,7 +27,7 @@ public abstract class View implements Screen {
 
         screenWidth = Gdx.graphics.getWidth();
         screenHeight = Gdx.graphics.getHeight();
-        gameWidth = 455;
+        gameWidth = Constants.screenWidth;
         gameHeight = screenHeight / (screenWidth / gameWidth);
 
         midPointY = (int) (gameHeight / 2);
@@ -65,6 +66,7 @@ public abstract class View implements Screen {
 
     @Override
     public void dispose() {
+
     }
 
 }

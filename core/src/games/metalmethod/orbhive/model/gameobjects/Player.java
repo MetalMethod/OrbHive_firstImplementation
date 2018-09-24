@@ -1,7 +1,9 @@
 package games.metalmethod.orbhive.model.gameobjects;
 
-import com.badlogic.gdx.math.Circle;
+
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import games.metalmethod.orbhive.model.Constants;
 
 public class Player {
 
@@ -20,7 +22,7 @@ public class Player {
     /**
      * Object for collision detection
      */
-    private Circle boundingCircle;
+    private Rectangle boundingRectangle;
 
     public Player( float x, float y, int width, int height) {
         this.width = width;
@@ -30,9 +32,10 @@ public class Player {
         this.velocity = new Vector2(0,0);
         this.acceleration =  new Vector2(0,0);
 
-        boundingCircle = new Circle();
+        boundingRectangle = new Rectangle();
 
     }
+
 
     public void update(float delta){
         velocity.add(acceleration.cpy().scl(delta));
@@ -40,7 +43,7 @@ public class Player {
 
         // Set the circle's center to be (9, 6) with respect to the bird.
         // Set the circle's radius to be 6.5f;
-        boundingCircle.set(position.x + 9, position.y + 6, 6.5f);
+        boundingRectangle.set(getPosition().x, getPosition().y, width, height);
     }
 
     public Vector2 getPosition() {
@@ -73,5 +76,9 @@ public class Player {
 
     public int getWidth() {
         return width;
+    }
+
+    public Rectangle getBoundingRectangle() {
+        return boundingRectangle;
     }
 }

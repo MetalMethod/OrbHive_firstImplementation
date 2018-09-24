@@ -24,7 +24,7 @@ public class Controller extends Game {
 
         AssetLoader.load();
 
-        player = new Player(50, 50, Constants.playerSize, Constants.playerSize);
+        player = new Player(50, 50, Constants.playerSize, Constants.playerSize - 15);
 
         gameScreen = new GameScreen(this);
         setScreen(gameScreen);
@@ -35,6 +35,7 @@ public class Controller extends Game {
 
     public void update(float delta) {
         player.update(delta);
+        detectWalls();
     }
 
     @Override
@@ -81,6 +82,25 @@ public class Controller extends Game {
 
     public void stopMovePlayerX() {
         player.setVelocity(player.getVelocity().set(0, player.getVelocity().y));
+    }
+
+    public void detectWalls(){
+        //left
+        if(player.getPosition().x < 5  ){
+            player.setPosition(player.getPosition().set(5, player.getPosition().y));
+        }
+        //right
+        if(player.getPosition().x > 410 ){
+            player.setPosition(player.getPosition().set(410, player.getPosition().y));
+        }
+        //top
+        if(player.getPosition().y < 0 ){
+            player.setPosition(player.getPosition().set(player.getPosition().x, 0));
+        }
+        //down
+        if(player.getPosition().y > 220){
+            player.setPosition(player.getPosition().set(player.getPosition().x, 220));
+        }
     }
 
 }
