@@ -77,7 +77,6 @@ public class TextureHandler {
 
         initGameObjects();
         initAssets();
-
     }
 
     private void initGameObjects() {
@@ -117,14 +116,11 @@ public class TextureHandler {
         playerLast.flip(false, true);
 
         engineOne = new TextureRegion(sprites, 0, 199, 10, 10);
-        engineOne.flip(false, true);
-
         engineTwo = new TextureRegion(sprites, 0, 208, 10, 10);
-        engineTwo.flip(false, true);
-
         engineThree = new TextureRegion(sprites, 0, 217, 10, 10);
+        engineOne.flip(false, true);
+        engineTwo.flip(false, true);
         engineThree.flip(false, true);
-
         TextureRegion[] engines = {engineOne, engineTwo, engineThree};
         engineAnimation = new Animation(0.06f, (Object[]) engines);
         engineAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
