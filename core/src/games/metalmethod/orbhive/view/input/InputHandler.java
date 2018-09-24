@@ -46,7 +46,25 @@ public class InputHandler implements InputProcessor {
 
     @Override
     public boolean keyUp(int keycode) {
-        return false;
+        switch (keycode) {
+            case 51: {
+                this.stopMovePlayerUp();
+                break;
+            }
+            case 32: {
+                this.stopMovePlayerForward();
+                break;
+            }
+            case 47: {
+                this.stopMovePlayerDown();
+                break;
+            }
+            case 29: {
+                this.stopMovePlayerBack();
+                break;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -86,13 +104,37 @@ public class InputHandler implements InputProcessor {
 
     private void movePlayerForward() {
         Gdx.app.log("mode player: ", "FORWARD");
+        this.controller.movePlayerForward();
     }
 
     private void movePlayerBack() {
         Gdx.app.log("mode player: ", "BACK");
+        this.controller.movePlayerBack();
     }
 
     private void movePlayerDown() {
         Gdx.app.log("mode player: ", "DOWN");
+        this.controller.movePlayerDown();
     }
+
+    private void stopMovePlayerUp() {
+        this.controller.stopMovePlayerY();
+    }
+
+    private void stopMovePlayerForward() {
+        this.controller.stopMovePlayerX();
+    }
+
+    private void stopMovePlayerDown() {
+        this.controller.stopMovePlayerY();
+    }
+
+    private void stopMovePlayerBack() {
+        this.controller.stopMovePlayerX();
+    }
+
+    private void stopPlayer() {
+        this.controller.stopPlayer();
+    }
+
 }

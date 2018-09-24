@@ -9,7 +9,7 @@ import games.metalmethod.orbhive.view.screens.GameScreen;
 
 import games.metalmethod.orbhive.model.gameworld.GameWorld;
 
-import java.util.Vector;
+import games.metalmethod.orbhive.model.Constants;
 
 public class Controller extends Game {
 
@@ -24,7 +24,7 @@ public class Controller extends Game {
 
         AssetLoader.load();
 
-        player = new Player(50,50,40,40);
+        player = new Player(50, 50, Constants.playerSize, Constants.playerSize);
 
         gameScreen = new GameScreen(this);
         setScreen(gameScreen);
@@ -33,7 +33,7 @@ public class Controller extends Game {
         gameWorld = new GameWorld(midPointY);
     }
 
-    public void update(float delta){
+    public void update(float delta) {
         player.update(delta);
     }
 
@@ -55,7 +55,32 @@ public class Controller extends Game {
         return player;
     }
 
-    public void movePlayerUp(){
-        player.setVelocity(player.getVelocity().add(0,-100));
+    public void movePlayerUp() {
+        player.setVelocity(player.getVelocity().add(0, -Constants.movementVelocity));
     }
+
+    public void movePlayerForward() {
+        player.setVelocity(player.getVelocity().add(Constants.movementVelocity, 0));
+    }
+
+    public void movePlayerDown() {
+        player.setVelocity(player.getVelocity().add(0, Constants.movementVelocity));
+    }
+
+    public void movePlayerBack() {
+        player.setVelocity(player.getVelocity().add(-Constants.movementVelocity, 0));
+    }
+
+    public void stopPlayer() {
+        player.setVelocity(player.getVelocity().set(0, 0));
+    }
+
+    public void stopMovePlayerY() {
+        player.setVelocity(player.getVelocity().set(player.getVelocity().x, 0));
+    }
+
+    public void stopMovePlayerX() {
+        player.setVelocity(player.getVelocity().set(0, player.getVelocity().y));
+    }
+
 }
