@@ -1,15 +1,13 @@
 package games.metalmethod.orbhive.model.gameobjects;
 
-
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
-import games.metalmethod.orbhive.model.Constants;
+import games.metalmethod.orbhive.view.interfaces.BaseRectangle;
+import games.metalmethod.orbhive.view.interfaces.Vector;
 
 public class Player {
 
-    private Vector2 position;
-    private Vector2 velocity;
-    private Vector2 acceleration;
+    private Vector position;
+    private Vector velocity;
+    private Vector acceleration;
 
     /**
      * positive change in rotation is a clockwise rotation and that a negative change in rotation is a counterclockwise rotation.
@@ -22,17 +20,17 @@ public class Player {
     /**
      * Object for collision detection
      */
-    private Rectangle boundingRectangle;
+    private BaseRectangle boundingRectangle;
 
     public Player(float x, float y) {
         this.width = 40;
         this.height = 25;
 
-        this.position = new Vector2(x, y);
-        this.velocity = new Vector2(0, 0);
-        this.acceleration = new Vector2(0, 0);
+        this.position = new Vector(x, y);
+        this.velocity = new Vector(0, 0);
+        this.acceleration = new Vector(0, 0);
 
-        boundingRectangle = new Rectangle();
+        boundingRectangle = new BaseRectangle();
     }
 
     public void update(float delta) {
@@ -42,27 +40,27 @@ public class Player {
         boundingRectangle.set(getPosition().x, getPosition().y + 7, width, height);
     }
 
-    public Vector2 getPosition() {
+    public Vector getPosition() {
         return position;
     }
 
-    public Vector2 getVelocity() {
+    public Vector getVelocity() {
         return velocity;
     }
 
-    public Vector2 getAcceleration() {
+    public Vector getAcceleration() {
         return acceleration;
     }
 
-    public void setPosition(Vector2 position) {
+    public void setPosition(Vector position) {
         this.position = position;
     }
 
-    public void setVelocity(Vector2 velocity) {
+    public void setVelocity(Vector velocity) {
         this.velocity = velocity;
     }
 
-    public void setAcceleration(Vector2 acceleration) {
+    public void setAcceleration(Vector acceleration) {
         this.acceleration = acceleration;
     }
 
@@ -74,7 +72,7 @@ public class Player {
         return width;
     }
 
-    public Rectangle getBoundingRectangle() {
+    public BaseRectangle getBoundingRectangle() {
         return boundingRectangle;
     }
 }

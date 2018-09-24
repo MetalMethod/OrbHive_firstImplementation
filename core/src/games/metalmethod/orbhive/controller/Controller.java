@@ -2,13 +2,12 @@ package games.metalmethod.orbhive.controller;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+
 import games.metalmethod.orbhive.model.gameobjects.Player;
 import games.metalmethod.orbhive.view.assets.AssetLoader;
-
+import games.metalmethod.orbhive.view.interfaces.Vector;
 import games.metalmethod.orbhive.view.screens.GameScreen;
-
 import games.metalmethod.orbhive.model.gameworld.GameWorld;
-
 import games.metalmethod.orbhive.model.Constants;
 
 public class Controller extends Game {
@@ -25,7 +24,7 @@ public class Controller extends Game {
 
         AssetLoader.load();
 
-        player = new Player(50, 50);
+        player = new Player(50, 110);
 
         gameScreen = new GameScreen(this);
         setScreen(gameScreen);
@@ -58,59 +57,59 @@ public class Controller extends Game {
     }
 
     public void movePlayerUp() {
-        player.setVelocity(player.getVelocity().add(0, -Constants.movementVelocity));
+        player.setVelocity((Vector)player.getVelocity().add(0, -Constants.movementVelocity));
         isPlayerMoving = true;
     }
 
     public void movePlayerForward() {
-        player.setVelocity(player.getVelocity().add(Constants.movementVelocity, 0));
+        player.setVelocity((Vector)player.getVelocity().add(Constants.movementVelocity, 0));
         isPlayerMoving = true;
 
     }
 
     public void movePlayerDown() {
-        player.setVelocity(player.getVelocity().add(0, Constants.movementVelocity));
+        player.setVelocity((Vector) player.getVelocity().add(0, Constants.movementVelocity));
         isPlayerMoving = true;
 
     }
 
     public void movePlayerBack() {
-        player.setVelocity(player.getVelocity().add(-Constants.movementVelocity, 0));
+        player.setVelocity((Vector)player.getVelocity().add(-Constants.movementVelocity, 0));
         isPlayerMoving = true;
 
     }
 
     public void stopPlayer() {
-        player.setVelocity(player.getVelocity().set(0, 0));
+        player.setVelocity((Vector)player.getVelocity().set(0, 0));
         isPlayerMoving = false;
     }
 
     public void stopMovePlayerY() {
-        player.setVelocity(player.getVelocity().set(player.getVelocity().x, 0));
+        player.setVelocity((Vector)player.getVelocity().set(player.getVelocity().x, 0));
         isPlayerMoving = false;
     }
 
     public void stopMovePlayerX() {
-        player.setVelocity(player.getVelocity().set(0, player.getVelocity().y));
+        player.setVelocity((Vector)player.getVelocity().set(0, player.getVelocity().y));
         isPlayerMoving = false;
     }
 
     public void detectWalls(){
         //left
         if(player.getPosition().x < 5  ){
-            player.setPosition(player.getPosition().set(5, player.getPosition().y));
+            player.setPosition((Vector)player.getPosition().set(5, player.getPosition().y));
         }
         //right
         if(player.getPosition().x > 410 ){
-            player.setPosition(player.getPosition().set(410, player.getPosition().y));
+            player.setPosition((Vector)player.getPosition().set(410, player.getPosition().y));
         }
         //top
         if(player.getPosition().y < 0 ){
-            player.setPosition(player.getPosition().set(player.getPosition().x, 0));
+            player.setPosition((Vector)player.getPosition().set(player.getPosition().x, 0));
         }
         //down
         if(player.getPosition().y > 220){
-            player.setPosition(player.getPosition().set(player.getPosition().x, 220));
+            player.setPosition((Vector)player.getPosition().set(player.getPosition().x, 220));
         }
     }
 
@@ -119,6 +118,6 @@ public class Controller extends Game {
     }
 
     public boolean isPlayerDying() {
-        return true;
+        return false;
     }
 }
