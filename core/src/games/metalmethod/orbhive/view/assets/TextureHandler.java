@@ -138,7 +138,7 @@ public class TextureHandler {
         batcher.end();
 
         // Draw non-bitmap elements
-        drawPlayerBoundingRect();
+//        drawPlayerBoundingRect();
     }
 
     private void fillBlackBg() {
@@ -201,7 +201,7 @@ public class TextureHandler {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
         // Draw player bounding rectangle
-        shapeRenderer.setColor(255f, 0f, 0f, 0f);
+        shapeRenderer.setColor(255f, 0f, 0f, 0.35f);
         shapeRenderer.rect(player.getBoundingRectangle().x, player.getBoundingRectangle().y, player.getWidth(), player.getHeight());
 
         shapeRenderer.end();
