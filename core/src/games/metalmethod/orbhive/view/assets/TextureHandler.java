@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+import games.metalmethod.orbhive.controller.Controller;
 import games.metalmethod.orbhive.model.gameobjects.Player;
 import games.metalmethod.orbhive.model.gameworld.GameWorld;
 
@@ -41,8 +42,12 @@ public class TextureHandler {
     private TextureRegion bg;
     private Animation playerAnimation;
     private TextureRegion playerFull, playerMid, playerLast;
+    private Controller controller;
 
-    public TextureHandler(GameWorld gameWorld, int gameHeight, int midPointY) {
+    public TextureHandler(Controller controller, GameWorld gameWorld, int gameHeight, int midPointY) {
+        this.controller = controller;
+        player = controller.getPlayer();
+
         this.sprites = AssetLoader.getSprites();
 
         this.gameWorld = gameWorld;
@@ -61,10 +66,11 @@ public class TextureHandler {
 
         initGameObjects();
         initAssets();
+
     }
 
     private void initGameObjects() {
-//        player = gameWorld.getPlayer();
+        player = controller.getPlayer();
         //scrollHandler = gameWorld.getScrollHandler();
     }
 
@@ -98,6 +104,8 @@ public class TextureHandler {
         playerMid.flip(false, true);
         playerLast.flip(false, true);
 
+        // TODO CLEAN COMMENTS
+        // EXAMPLE OF ANIMATION
 //        TextureRegion[] birds = { birdDown, bird, birdUp };
 //        // Creates a new Animation in which each frame is 0.06 seconds long, using the above array.
 //        birdAnimation = new Animation(0.06f, birds);
@@ -106,7 +114,7 @@ public class TextureHandler {
     }
 
     /**
-     * runTime is reponsible to determine which frame the bird animation should display.
+     * runTime is responsible to determine which frame the player animation should display.
      * The Animation object will use this value (and the frame duration) to determine which TextureRegion to display.
      *
      * @param runTime
@@ -160,12 +168,12 @@ public class TextureHandler {
 
         batcher.draw(
                 playerState,
+                ((int) player.getPosition().x),
+                ((int) player.getPosition().y),
                 50,
                 50,
-                50,
-                50,
-                40,
-                40,
+                player.getWidth(),
+                player.getHeight(),
                 1, 1,
                 0
         );

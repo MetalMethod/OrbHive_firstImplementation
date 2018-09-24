@@ -66,4 +66,5 @@ public abstract class View implements Screen {
     @Override
     public void dispose() {
     }
+
 }

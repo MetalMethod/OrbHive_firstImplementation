@@ -44,4 +44,20 @@ public class Player {
         boundingCircle.set(position.x + 9, position.y + 6, 6.5f);
 
     }
+
+    public Vector2 getPosition() {
+        return position;
+    }
+
+    public void setPosition(Vector2 position) {
+        this.position = position;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
 }

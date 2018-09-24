@@ -14,7 +14,7 @@ public class GameScreen extends View {
         gameWorld = controller.getGameWorld();
 
         // get textureHandler
-        textureHandler = new TextureHandler(gameWorld, (int)gameHeight, midPointY);
+        textureHandler = new TextureHandler(controller, gameWorld, (int)gameHeight, midPointY);
         textureHandler.render(runTime);
 
         // Binds the inputHandler to the character
@@ -33,7 +33,7 @@ public class GameScreen extends View {
     }
 
     public void setInput(){
-        Gdx.input.setInputProcessor(new InputHandler(gameWorld));
+        Gdx.input.setInputProcessor(new InputHandler(controller));
     }
 
 }
