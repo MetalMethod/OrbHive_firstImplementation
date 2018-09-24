@@ -17,6 +17,7 @@ public class Controller extends Game {
     private GameScreen gameScreen;
 
     private Player player;
+    private boolean isPlayerMoving = false;
 
     @Override
     public void create() {
@@ -58,30 +59,40 @@ public class Controller extends Game {
 
     public void movePlayerUp() {
         player.setVelocity(player.getVelocity().add(0, -Constants.movementVelocity));
+        isPlayerMoving = true;
     }
 
     public void movePlayerForward() {
         player.setVelocity(player.getVelocity().add(Constants.movementVelocity, 0));
+        isPlayerMoving = true;
+
     }
 
     public void movePlayerDown() {
         player.setVelocity(player.getVelocity().add(0, Constants.movementVelocity));
+        isPlayerMoving = true;
+
     }
 
     public void movePlayerBack() {
         player.setVelocity(player.getVelocity().add(-Constants.movementVelocity, 0));
+        isPlayerMoving = true;
+
     }
 
     public void stopPlayer() {
         player.setVelocity(player.getVelocity().set(0, 0));
+        isPlayerMoving = false;
     }
 
     public void stopMovePlayerY() {
         player.setVelocity(player.getVelocity().set(player.getVelocity().x, 0));
+        isPlayerMoving = false;
     }
 
     public void stopMovePlayerX() {
         player.setVelocity(player.getVelocity().set(0, player.getVelocity().y));
+        isPlayerMoving = false;
     }
 
     public void detectWalls(){
@@ -103,4 +114,7 @@ public class Controller extends Game {
         }
     }
 
+    public boolean isPlayerMoving() {
+        return isPlayerMoving;
+    }
 }

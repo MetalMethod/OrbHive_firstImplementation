@@ -43,6 +43,10 @@ public class TextureHandler {
     private TextureRegion bg;
     private Animation playerAnimation;
     private TextureRegion playerFull, playerMid, playerLast;
+    private TextureRegion engineOne, engineTwo, engineThree;
+
+    private Animation engineAnimation;
+
     private Controller controller;
 
     public TextureHandler(Controller controller, GameWorld gameWorld, int gameHeight, int midPointY) {
@@ -104,6 +108,19 @@ public class TextureHandler {
         playerFull.flip(false, true);
         playerMid.flip(false, true);
         playerLast.flip(false, true);
+
+        engineOne = new TextureRegion(sprites, 0, 199, 10, 10);
+        engineOne.flip(false, true);
+
+        engineTwo = new TextureRegion(sprites, 0, 208, 10, 10);
+        engineTwo.flip(false, true);
+
+        engineThree = new TextureRegion(sprites, 0, 217, 10, 10);
+        engineThree.flip(false, true);
+
+        TextureRegion[] engines = {engineOne, engineTwo, engineThree};
+        engineAnimation = new Animation(0.06f, engines);
+        engineAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 
         // TODO CLEAN COMMENTS
         // EXAMPLE OF ANIMATION
@@ -170,21 +187,10 @@ public class TextureHandler {
                 1, 1,
                 0
         );
-    }
 
-
-    private void drawShapes() {
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-
-//        // Draw Background color
-//        shapeRenderer.setColor(128 / 255.0f, 128 / 255.0f, 128 / 255.0f, 1);
-//        shapeRenderer.rect(0, 0, 455, 256);
-
-        // Draw player bounding rectangle
-        shapeRenderer.setColor(255f, 0f, 0f, 0f);
-        shapeRenderer.rect(player.getBoundingRectangle().x, player.getBoundingRectangle().y, player.getWidth(), player.getHeight());
-
-        shapeRenderer.end();
+        if (controller.isPlayerMoving()) {
+            drawEngine(runTime);
+        }
     }
 
     private void drawBackgroundColor() {
@@ -205,6 +211,16 @@ public class TextureHandler {
         shapeRenderer.rect(player.getBoundingRectangle().x, player.getBoundingRectangle().y, player.getWidth(), player.getHeight());
 
         shapeRenderer.end();
+    }
+
+    private void drawEngine(float runTime) {
+        batcher.draw(
+                (TextureRegion) engineAnimation.getKeyFrame(runTime),
+                player.getPosition().x + 1,
+                player.getPosition().y + 15,
+                10,
+                10
+        );
     }
 }
 
