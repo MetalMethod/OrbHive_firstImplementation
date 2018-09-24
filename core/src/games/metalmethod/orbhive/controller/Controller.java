@@ -33,6 +33,10 @@ public class Controller extends Game {
         gameWorld = new GameWorld(midPointY);
     }
 
+    public void update(float delta){
+        player.update(delta);
+    }
+
     @Override
     public void dispose() {
         super.dispose();
@@ -52,6 +56,6 @@ public class Controller extends Game {
     }
 
     public void movePlayerUp(){
-        player.setPosition(player.getPosition().add(0,-10));
+        player.setVelocity(player.getVelocity().add(0,-100));
     }
 }

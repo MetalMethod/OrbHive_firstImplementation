@@ -36,21 +36,35 @@ public class Player {
 
     public void update(float delta){
         velocity.add(acceleration.cpy().scl(delta));
-
         position.add(velocity.cpy().scl(delta));
 
         // Set the circle's center to be (9, 6) with respect to the bird.
         // Set the circle's radius to be 6.5f;
         boundingCircle.set(position.x + 9, position.y + 6, 6.5f);
-
     }
 
     public Vector2 getPosition() {
         return position;
     }
 
+    public Vector2 getVelocity() {
+        return velocity;
+    }
+
+    public Vector2 getAcceleration() {
+        return acceleration;
+    }
+
     public void setPosition(Vector2 position) {
         this.position = position;
+    }
+
+    public void setVelocity(Vector2 velocity) {
+        this.velocity = velocity;
+    }
+
+    public void setAcceleration(Vector2 acceleration) {
+        this.acceleration = acceleration;
     }
 
     public int getHeight() {

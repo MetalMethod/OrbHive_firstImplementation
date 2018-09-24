@@ -27,6 +27,8 @@ public class GameScreen extends View {
 
     @Override
     public void render(float delta) {
+        controller.update(delta);
+
         runTime += delta;
         // gameWorld.update(delta);
         textureHandler.render(runTime);
