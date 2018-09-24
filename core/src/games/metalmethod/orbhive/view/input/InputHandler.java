@@ -21,22 +21,26 @@ public class InputHandler implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-        Gdx.app.log("key pressed: ", String.valueOf(keycode));
+//        Gdx.app.log("key pressed: ", String.valueOf(keycode));
 
         switch (keycode) {
-            case 51: case 19: {
+            case 51:
+            case 19: {
                 this.movePlayerUp();
                 break;
             }
-            case 32: case 22:{
+            case 32:
+            case 22: {
                 this.movePlayerForward();
                 break;
             }
-            case 47: case 20: {
+            case 47:
+            case 20: {
                 this.movePlayerDown();
                 break;
             }
-            case 29: case 21:{
+            case 29:
+            case 21: {
                 this.movePlayerBack();
                 break;
             }
@@ -48,19 +52,23 @@ public class InputHandler implements InputProcessor {
     @Override
     public boolean keyUp(int keycode) {
         switch (keycode) {
-            case 51: case 19:{
+            case 51:
+            case 19: {
                 this.stopMovePlayerUp();
                 break;
             }
-            case 32: case 22:{
+            case 32:
+            case 22: {
                 this.stopMovePlayerForward();
                 break;
             }
-            case 47: case 20:{
+            case 47:
+            case 20: {
                 this.stopMovePlayerDown();
                 break;
             }
-            case 29: case 21:{
+            case 29:
+            case 21: {
                 this.stopMovePlayerBack();
                 break;
             }
@@ -99,22 +107,18 @@ public class InputHandler implements InputProcessor {
     }
 
     private void movePlayerUp() {
-        Gdx.app.log("mode player: ", "UP");
         this.controller.movePlayerUp();
     }
 
     private void movePlayerForward() {
-        Gdx.app.log("mode player: ", "FORWARD");
         this.controller.movePlayerForward();
     }
 
     private void movePlayerBack() {
-        Gdx.app.log("mode player: ", "BACK");
         this.controller.movePlayerBack();
     }
 
     private void movePlayerDown() {
-        Gdx.app.log("mode player: ", "DOWN");
         this.controller.movePlayerDown();
     }
 

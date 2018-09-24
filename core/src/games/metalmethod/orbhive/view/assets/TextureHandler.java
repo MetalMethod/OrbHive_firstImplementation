@@ -40,12 +40,18 @@ public class TextureHandler {
      * Game Objects
      */
     private Player player;
-    private TextureRegion bg;
+    private TextureRegion bg, halfDownBg;
     private Animation playerAnimation;
     private TextureRegion playerFull, playerMid, playerLast;
     private TextureRegion engineOne, engineTwo, engineThree;
 
+    private TextureRegion playerExplosionOne, playerExplosionTwo, playerExplosionThree;
+    private TextureRegion playerExplosionFour, playerExplosionFive, playerExplosionSix;
+
+
     private Animation engineAnimation;
+    private Animation playerExplosionAnimation;
+
 
     private Controller controller;
 
@@ -82,6 +88,7 @@ public class TextureHandler {
     private void initAssets() {
 
         bg = new TextureRegion(sprites, 224, 0, 32, 256);
+        halfDownBg = new TextureRegion(sprites, 224, 128, 32, 128);
 
         playerFull = new TextureRegion(
                 sprites,
@@ -119,16 +126,27 @@ public class TextureHandler {
         engineThree.flip(false, true);
 
         TextureRegion[] engines = {engineOne, engineTwo, engineThree};
-        engineAnimation = new Animation(0.06f, engines);
+        engineAnimation = new Animation(0.06f, (Object[]) engines);
         engineAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 
-        // TODO CLEAN COMMENTS
-        // EXAMPLE OF ANIMATION
-//        TextureRegion[] birds = { birdDown, bird, birdUp };
-//        // Creates a new Animation in which each frame is 0.06 seconds long, using the above array.
-//        birdAnimation = new Animation(0.06f, birds);
-//        // Sets play mode to be ping pong, in which we will see a bounce.
-//        birdAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+        playerExplosionOne = new TextureRegion(sprites, 37, 193, 32, 32);
+        playerExplosionOne.flip(false, true);
+        playerExplosionTwo = new TextureRegion(sprites, 68, 193, 32, 32);
+        playerExplosionTwo.flip(false, true);
+        playerExplosionThree = new TextureRegion(sprites, 98, 193, 32, 32);
+        playerExplosionThree.flip(false, true);
+        playerExplosionFour = new TextureRegion(sprites, 129, 193, 32, 32);
+        playerExplosionFour.flip(false, true);
+        playerExplosionFive = new TextureRegion(sprites, 161, 193, 32, 32);
+        playerExplosionFive.flip(false, true);
+        playerExplosionSix = new TextureRegion(sprites, 192, 193, 32, 32);
+        playerExplosionSix.flip(false, true);
+
+        TextureRegion[] playerExplosions = {playerExplosionOne, playerExplosionTwo, playerExplosionThree, playerExplosionFour, playerExplosionFive, playerExplosionSix};
+
+        playerExplosionAnimation = new Animation(0.15f, (Object[]) playerExplosions);
+        playerExplosionAnimation.setPlayMode(Animation.PlayMode.NORMAL);
+
     }
 
     /**
@@ -147,6 +165,7 @@ public class TextureHandler {
         batcher.disableBlending();
 
         drawBgTexture();
+        //drawHalfDownBgTexture();
 
         // Draw elements that require transparency
         batcher.enableBlending();
@@ -173,6 +192,16 @@ public class TextureHandler {
         }
     }
 
+    private void drawHalfDownBgTexture() {
+        int width = 32;
+        int windowWidth = 455;
+        int x = 0;
+        while (windowWidth > x) {
+            batcher.draw(halfDownBg, x, 128, width, 128);
+            x += width;
+        }
+    }
+
     private void drawPlayer(float runTime) {
         TextureRegion playerState = playerFull;
 
@@ -191,6 +220,31 @@ public class TextureHandler {
         if (controller.isPlayerMoving()) {
             drawEngine(runTime);
         }
+
+        if (controller.isPlayerDying()) {
+            drawPlayerExplosion(runTime);
+        }
+
+    }
+
+    private void drawEngine(float runTime) {
+        batcher.draw(
+                (TextureRegion) engineAnimation.getKeyFrame(runTime),
+                player.getPosition().x + 1,
+                player.getPosition().y + 15,
+                10,
+                10
+        );
+    }
+
+    private void drawPlayerExplosion(float runTime) {
+        batcher.draw(
+                (TextureRegion) playerExplosionAnimation.getKeyFrame(runTime),
+                100,
+                100,
+                32,
+                32
+        );
     }
 
     private void drawBackgroundColor() {
@@ -213,14 +267,6 @@ public class TextureHandler {
         shapeRenderer.end();
     }
 
-    private void drawEngine(float runTime) {
-        batcher.draw(
-                (TextureRegion) engineAnimation.getKeyFrame(runTime),
-                player.getPosition().x + 1,
-                player.getPosition().y + 15,
-                10,
-                10
-        );
-    }
+
 }
 
