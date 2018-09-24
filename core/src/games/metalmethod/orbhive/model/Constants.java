@@ -6,5 +6,5 @@ public class Constants {
 
     public static final int playerSize = 40;
 
-    public static final int movementVelocity = 150;
+    public static final int movementVelocity = 180;
 }

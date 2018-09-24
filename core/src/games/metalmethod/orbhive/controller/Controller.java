@@ -24,7 +24,7 @@ public class Controller extends Game {
 
         AssetLoader.load();
 
-        player = new Player(50, 50, Constants.playerSize, Constants.playerSize - 15);
+        player = new Player(50, 50);
 
         gameScreen = new GameScreen(this);
         setScreen(gameScreen);

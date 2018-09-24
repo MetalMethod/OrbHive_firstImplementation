@@ -24,26 +24,22 @@ public class Player {
      */
     private Rectangle boundingRectangle;
 
-    public Player( float x, float y, int width, int height) {
-        this.width = width;
-        this.height = height;
+    public Player(float x, float y) {
+        this.width = 40;
+        this.height = 25;
 
         this.position = new Vector2(x, y);
-        this.velocity = new Vector2(0,0);
-        this.acceleration =  new Vector2(0,0);
+        this.velocity = new Vector2(0, 0);
+        this.acceleration = new Vector2(0, 0);
 
         boundingRectangle = new Rectangle();
-
     }
 
-
-    public void update(float delta){
+    public void update(float delta) {
         velocity.add(acceleration.cpy().scl(delta));
         position.add(velocity.cpy().scl(delta));
 
-        // Set the circle's center to be (9, 6) with respect to the bird.
-        // Set the circle's radius to be 6.5f;
-        boundingRectangle.set(getPosition().x, getPosition().y, width, height);
+        boundingRectangle.set(getPosition().x, getPosition().y + 7, width, height);
     }
 
     public Vector2 getPosition() {

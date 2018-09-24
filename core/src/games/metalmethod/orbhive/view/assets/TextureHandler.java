@@ -138,7 +138,7 @@ public class TextureHandler {
         batcher.end();
 
         // Draw non-bitmap elements
-        //drawPlayerBoundingRect();
+        drawPlayerBoundingRect();
     }
 
     private void fillBlackBg() {
