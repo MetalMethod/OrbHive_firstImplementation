@@ -54,6 +54,7 @@ public class TextureHandler {
     private TextureRegion enemySecondFour, enemySecondFive, enemySecondSix, enemySecondSeven;
 
     private TextureRegion enemyFirstWaspOne, enemyFirstWaspTwo, enemyFirstWaspThree, enemyFirstWaspFour;
+    private TextureRegion enemyFirstWaspDeathOne, enemyFirstWaspDeathTwo, enemyFirstWaspDeathThree, enemyFirstWaspDeathFour, enemyFirstWaspDeathFive, enemyFirstWaspDeathSix, enemyFirstWaspDeathSeven;
 
     private Animation engineAnimation;
     private Animation playerExplosionAnimation;
@@ -61,7 +62,9 @@ public class TextureHandler {
     private Animation enemyFirstAnimation;
     private Animation enemySecondAnimation;
     private Animation enemySecondOptionAnimation;
+
     private Animation enemyFirstWaspAnimation;
+    private Animation enemyFirstWaspDeathAnimation;
 
     private Controller controller;
 
@@ -204,6 +207,25 @@ public class TextureHandler {
         TextureRegion[] enemyFirstWasps = { enemyFirstWaspOne, enemyFirstWaspTwo, enemyFirstWaspThree };
         enemyFirstWaspAnimation = new Animation(0.08f, (Object[]) enemyFirstWasps);
         enemyFirstWaspAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+
+        enemyFirstWaspDeathOne = new TextureRegion(sprites, 1, 117, 16, 16);
+        enemyFirstWaspDeathTwo = new TextureRegion(sprites, 17, 117, 16, 16);
+        enemyFirstWaspDeathThree = new TextureRegion(sprites, 32, 117, 14, 16);
+        enemyFirstWaspDeathFour = new TextureRegion(sprites, 47, 117, 14, 16);
+        enemyFirstWaspDeathFive = new TextureRegion(sprites, 62, 117, 14, 16);
+        enemyFirstWaspDeathSix = new TextureRegion(sprites, 76, 117, 14, 16);
+        enemyFirstWaspDeathSeven = new TextureRegion(sprites, 92, 117, 14, 16);
+        enemyFirstWaspDeathOne.flip(false, true);
+        enemyFirstWaspDeathTwo.flip(false, true);
+        enemyFirstWaspDeathThree.flip(false, true);
+        enemyFirstWaspDeathFour.flip(false, true);
+        enemyFirstWaspDeathFive.flip(false, true);
+        enemyFirstWaspDeathSix.flip(false, true);
+        enemyFirstWaspDeathSeven.flip(false, true);
+
+        TextureRegion[] enemyFirstWaspDeaths = { enemyFirstWaspDeathOne, enemyFirstWaspDeathTwo, enemyFirstWaspDeathThree, enemyFirstWaspDeathFour, enemyFirstWaspDeathFive, enemyFirstWaspDeathSix, enemyFirstWaspDeathSeven};
+        enemyFirstWaspDeathAnimation = new Animation(0.1f, (Object[]) enemyFirstWaspDeaths);
+        enemyFirstWaspDeathAnimation.setPlayMode(Animation.PlayMode.LOOP);
     }
 
     /**
@@ -233,6 +255,7 @@ public class TextureHandler {
         drawEnemySecond(runTime);
         drawEnemySecondOption(runTime);
         drawEnemyFirstWasp(runTime);
+        drawEnemyFirstWaspDeath(runTime);
 
         batcher.end();
 
@@ -365,6 +388,16 @@ public class TextureHandler {
                 (TextureRegion) enemyFirstWaspAnimation.getKeyFrame(runTime),
                 400,
                 100,
+                16,
+                16
+        );
+    }
+
+    private void drawEnemyFirstWaspDeath(float runTime){
+        batcher.draw(
+                (TextureRegion) enemyFirstWaspDeathAnimation.getKeyFrame(runTime),
+                400,
+                200,
                 16,
                 16
         );
