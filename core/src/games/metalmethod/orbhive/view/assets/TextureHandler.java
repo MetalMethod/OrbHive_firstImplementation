@@ -225,7 +225,7 @@ public class TextureHandler {
 
         TextureRegion[] enemyFirstWaspDeaths = { enemyFirstWaspDeathOne, enemyFirstWaspDeathTwo, enemyFirstWaspDeathThree, enemyFirstWaspDeathFour, enemyFirstWaspDeathFive, enemyFirstWaspDeathSix, enemyFirstWaspDeathSeven};
         enemyFirstWaspDeathAnimation = new Animation(0.1f, (Object[]) enemyFirstWaspDeaths);
-        enemyFirstWaspDeathAnimation.setPlayMode(Animation.PlayMode.LOOP);
+        enemyFirstWaspDeathAnimation.setPlayMode(Animation.PlayMode.NORMAL);
     }
 
     /**
@@ -260,7 +260,7 @@ public class TextureHandler {
         batcher.end();
 
         // Draw non-bitmap elements
-//        drawPlayerBoundingRect();
+        // drawPlayerBoundingRect();
     }
 
     private void fillBlackBg() {
@@ -366,8 +366,8 @@ public class TextureHandler {
     private void drawEnemySecond(float runTime){
         batcher.draw(
                 (TextureRegion) enemySecondAnimation.getKeyFrame(runTime),
-                200,
                 100,
+                200,
                 16,
                 16
         );
@@ -376,8 +376,8 @@ public class TextureHandler {
     private void drawEnemySecondOption(float runTime){
         batcher.draw(
                 (TextureRegion) enemySecondOptionAnimation.getKeyFrame(runTime),
-                300,
                 100,
+                300,
                 16,
                 16
         );
@@ -386,7 +386,7 @@ public class TextureHandler {
     private void drawEnemyFirstWasp(float runTime){
         batcher.draw(
                 (TextureRegion) enemyFirstWaspAnimation.getKeyFrame(runTime),
-                400,
+                200,
                 100,
                 16,
                 16
@@ -396,8 +396,8 @@ public class TextureHandler {
     private void drawEnemyFirstWaspDeath(float runTime){
         batcher.draw(
                 (TextureRegion) enemyFirstWaspDeathAnimation.getKeyFrame(runTime),
-                400,
-                200,
+                250,
+                100,
                 16,
                 16
         );
