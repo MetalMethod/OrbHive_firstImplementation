@@ -48,10 +48,20 @@ public class TextureHandler {
     private TextureRegion playerExplosionOne, playerExplosionTwo, playerExplosionThree;
     private TextureRegion playerExplosionFour, playerExplosionFive, playerExplosionSix;
 
+    private TextureRegion enemyFirstOne, enemyFirstTwo, enemyFirstThree;
+    private TextureRegion enemyFirstFour, enemyFirstFive, enemyFirstSix, enemyFirstSeven;
+    private TextureRegion enemySecondOne, enemySecondTwo, enemySecondThree;
+    private TextureRegion enemySecondFour, enemySecondFive, enemySecondSix, enemySecondSeven;
+
+    private TextureRegion enemyFirstWaspOne, enemyFirstWaspTwo, enemyFirstWaspThree, enemyFirstWaspFour;
 
     private Animation engineAnimation;
     private Animation playerExplosionAnimation;
 
+    private Animation enemyFirstAnimation;
+    private Animation enemySecondAnimation;
+    private Animation enemySecondOptionAnimation;
+    private Animation enemyFirstWaspAnimation;
 
     private Controller controller;
 
@@ -85,7 +95,6 @@ public class TextureHandler {
     }
 
     private void initAssets() {
-
         bg = new TextureRegion(sprites, 224, 0, 32, 256);
         halfDownBg = new TextureRegion(sprites, 224, 128, 32, 128);
 
@@ -141,6 +150,60 @@ public class TextureHandler {
         playerExplosionAnimation = new Animation(0.15f, (Object[]) playerExplosions);
         playerExplosionAnimation.setPlayMode(Animation.PlayMode.NORMAL);
 
+        // ENEMIES
+        enemyFirstOne = new TextureRegion(sprites, 0, 133, 16, 14);
+        enemyFirstTwo = new TextureRegion(sprites, 16, 133, 16, 14);
+        enemyFirstThree = new TextureRegion(sprites, 32, 133, 16, 14);
+        enemyFirstFour = new TextureRegion(sprites, 48, 133, 16, 14);
+        enemyFirstFive = new TextureRegion(sprites, 64, 133, 16, 14);
+        enemyFirstSix = new TextureRegion(sprites, 80, 133, 16, 14);
+        enemyFirstSeven = new TextureRegion(sprites, 96, 133, 16, 14);
+        enemyFirstOne.flip(false, true);
+        enemyFirstTwo.flip(false, true);
+        enemyFirstThree.flip(false, true);
+        enemyFirstFour.flip(false, true);
+        enemyFirstFive.flip(false, true);
+        enemyFirstSix.flip(false, true);
+        enemyFirstSeven.flip(false, true);
+        TextureRegion[] enemyFirsts = {enemyFirstOne, enemyFirstTwo, enemyFirstThree, enemyFirstFour, enemyFirstFive, enemyFirstSix, enemyFirstSeven };
+        enemyFirstAnimation = new Animation(0.15f, (Object[]) enemyFirsts);
+        enemyFirstAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+
+        enemySecondOne = new TextureRegion(sprites, 0, 147, 16, 16);
+        enemySecondTwo = new TextureRegion(sprites, 16, 147, 16, 16);
+        enemySecondThree = new TextureRegion(sprites, 32, 147, 16, 16);
+        enemySecondFour = new TextureRegion(sprites, 48, 147, 16, 16);
+        enemySecondFive = new TextureRegion(sprites, 64, 147, 16, 16);
+        enemySecondSix = new TextureRegion(sprites, 80, 147, 16, 16);
+        enemySecondSeven = new TextureRegion(sprites, 96, 147, 16, 16);
+        enemySecondOne.flip(false, true);
+        enemySecondTwo.flip(false, true);
+        enemySecondThree.flip(false, true);
+        enemySecondFour.flip(false, true);
+        enemySecondFive.flip(false, true);
+        enemySecondSix.flip(false, true);
+        enemySecondSeven.flip(false, true);
+
+        TextureRegion[] enemySeconds = { enemySecondFive, enemySecondSix, enemySecondSeven };
+        enemySecondAnimation = new Animation(0.15f, (Object[]) enemySeconds);
+        enemySecondAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+
+        TextureRegion[] enemySecondsOptionTwo = { enemySecondOne, enemySecondTwo, enemySecondThree };
+        enemySecondOptionAnimation = new Animation(0.15f, (Object[]) enemySecondsOptionTwo);
+        enemySecondOptionAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+
+        enemyFirstWaspOne = new TextureRegion(sprites, 0, 55, 16, 16);
+        enemyFirstWaspTwo = new TextureRegion(sprites, 16, 55, 16, 16);
+        enemyFirstWaspThree = new TextureRegion(sprites, 32, 56, 16, 16);
+        enemyFirstWaspFour = new TextureRegion(sprites, 48, 55, 16, 16);
+        enemyFirstWaspOne.flip(false, true);
+        enemyFirstWaspTwo.flip(false, true);
+        enemyFirstWaspThree.flip(false, true);
+        enemyFirstWaspFour.flip(false, true);
+
+        TextureRegion[] enemyFirstWasps = { enemyFirstWaspOne, enemyFirstWaspTwo, enemyFirstWaspThree };
+        enemyFirstWaspAnimation = new Animation(0.08f, (Object[]) enemyFirstWasps);
+        enemyFirstWaspAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
     }
 
     /**
@@ -164,6 +227,12 @@ public class TextureHandler {
         // Draw elements that require transparency
         batcher.enableBlending();
         drawPlayer(runTime);
+
+       //ENEMIES RENDERING
+        drawEnemyFirst(runTime);
+        drawEnemySecond(runTime);
+        drawEnemySecondOption(runTime);
+        drawEnemyFirstWasp(runTime);
 
         batcher.end();
 
@@ -261,6 +330,44 @@ public class TextureHandler {
         shapeRenderer.end();
     }
 
+    private void drawEnemyFirst(float runTime){
+        batcher.draw(
+                (TextureRegion) enemyFirstAnimation.getKeyFrame(runTime),
+                100,
+                100,
+                16,
+                16
+        );
+    }
 
+    private void drawEnemySecond(float runTime){
+        batcher.draw(
+                (TextureRegion) enemySecondAnimation.getKeyFrame(runTime),
+                200,
+                100,
+                16,
+                16
+        );
+    }
+
+    private void drawEnemySecondOption(float runTime){
+        batcher.draw(
+                (TextureRegion) enemySecondOptionAnimation.getKeyFrame(runTime),
+                300,
+                100,
+                16,
+                16
+        );
+    }
+
+    private void drawEnemyFirstWasp(float runTime){
+        batcher.draw(
+                (TextureRegion) enemyFirstWaspAnimation.getKeyFrame(runTime),
+                400,
+                100,
+                16,
+                16
+        );
+    }
 }
 
