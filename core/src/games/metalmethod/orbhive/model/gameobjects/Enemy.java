@@ -6,16 +6,16 @@ import games.metalmethod.orbhive.view.interfaces.Vector;
 
 public class Enemy {
 
-    protected Vector position;
-    protected Vector velocity;
-    protected Vector acceleration;
+    private Vector position;
+    private Vector velocity;
+    private Vector acceleration;
 
-    protected int width;
-    protected int height;
+    private int width;
+    private int height;
 
     private BaseRectangle boundingBox;
 
-    protected boolean isScrolledLeft;
+    private boolean isScrolledLeft;
 
     public Enemy(float x, float y, int width, int height, float speed){
         position = new Vector(x, y);
