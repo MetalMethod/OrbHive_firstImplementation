@@ -3,6 +3,9 @@ package games.metalmethod.orbhive.controller;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
+import com.badlogic.gdx.scenes.scene2d.ui.List;
+import games.metalmethod.orbhive.model.gameobjects.Enemy;
+import games.metalmethod.orbhive.model.gameobjects.EnemyFactory;
 import games.metalmethod.orbhive.model.gameobjects.Player;
 import games.metalmethod.orbhive.view.assets.AssetLoader;
 import games.metalmethod.orbhive.view.interfaces.Vector;
@@ -18,24 +21,39 @@ public class Controller extends Game {
     private Player player;
     private boolean isPlayerMoving = false;
 
+    private EnemyFactory enemyFactory;
+    private Enemy singleEnemy;
+
+    private float runTime;
+
     @Override
     public void create() {
         Gdx.app.log("Controller", "created");
 
         AssetLoader.load();
+        enemyFactory = new EnemyFactory();
+        singleEnemy = enemyFactory.createSimpleEnemy();
 
         player = new Player(50, 110);
 
         gameScreen = new GameScreen(this);
         setScreen(gameScreen);
 
+
         int midPointY = gameScreen.getMidPointY();
         gameWorld = new GameWorld(midPointY);
+
+
     }
 
     public void update(float delta) {
+        runTime = gameScreen.getRunTime();
         player.update(delta);
         detectWalls();
+
+        singleEnemy.update(delta);
+        // create enemy after 3 secs
+        // pass to renderer
     }
 
     @Override
@@ -120,4 +138,10 @@ public class Controller extends Game {
     public boolean isPlayerDying() {
         return false;
     }
+
+    public Enemy createEnemy(){
+        return singleEnemy;
+    }
+
+
 }

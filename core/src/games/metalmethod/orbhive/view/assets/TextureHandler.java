@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import games.metalmethod.orbhive.controller.Controller;
 import games.metalmethod.orbhive.model.Constants;
+import games.metalmethod.orbhive.model.gameobjects.Enemy;
 import games.metalmethod.orbhive.model.gameobjects.Player;
 import games.metalmethod.orbhive.model.gameworld.GameWorld;
 
@@ -68,6 +69,9 @@ public class TextureHandler {
 
     private Controller controller;
 
+    private Enemy enemy;
+
+
     public TextureHandler(Controller controller, GameWorld gameWorld, int gameHeight, int midPointY) {
         this.controller = controller;
         player = controller.getPlayer();
@@ -90,6 +94,8 @@ public class TextureHandler {
 
         initGameObjects();
         initAssets();
+
+        enemy = controller.createEnemy();
     }
 
     private void initGameObjects() {
@@ -168,7 +174,7 @@ public class TextureHandler {
         enemyFirstFive.flip(false, true);
         enemyFirstSix.flip(false, true);
         enemyFirstSeven.flip(false, true);
-        TextureRegion[] enemyFirsts = {enemyFirstOne, enemyFirstTwo, enemyFirstThree, enemyFirstFour, enemyFirstFive, enemyFirstSix, enemyFirstSeven };
+        TextureRegion[] enemyFirsts = {enemyFirstOne, enemyFirstTwo, enemyFirstThree, enemyFirstFour, enemyFirstFive, enemyFirstSix, enemyFirstSeven};
         enemyFirstAnimation = new Animation(0.15f, (Object[]) enemyFirsts);
         enemyFirstAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 
@@ -187,11 +193,11 @@ public class TextureHandler {
         enemySecondSix.flip(false, true);
         enemySecondSeven.flip(false, true);
 
-        TextureRegion[] enemySeconds = { enemySecondFive, enemySecondSix, enemySecondSeven };
+        TextureRegion[] enemySeconds = {enemySecondFive, enemySecondSix, enemySecondSeven};
         enemySecondAnimation = new Animation(0.15f, (Object[]) enemySeconds);
         enemySecondAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 
-        TextureRegion[] enemySecondsOptionTwo = { enemySecondOne, enemySecondTwo, enemySecondThree };
+        TextureRegion[] enemySecondsOptionTwo = {enemySecondOne, enemySecondTwo, enemySecondThree};
         enemySecondOptionAnimation = new Animation(0.15f, (Object[]) enemySecondsOptionTwo);
         enemySecondOptionAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 
@@ -204,7 +210,7 @@ public class TextureHandler {
         enemyFirstWaspThree.flip(false, true);
         enemyFirstWaspFour.flip(false, true);
 
-        TextureRegion[] enemyFirstWasps = { enemyFirstWaspOne, enemyFirstWaspTwo, enemyFirstWaspThree };
+        TextureRegion[] enemyFirstWasps = {enemyFirstWaspOne, enemyFirstWaspTwo, enemyFirstWaspThree};
         enemyFirstWaspAnimation = new Animation(0.08f, (Object[]) enemyFirstWasps);
         enemyFirstWaspAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 
@@ -223,7 +229,7 @@ public class TextureHandler {
         enemyFirstWaspDeathSix.flip(false, true);
         enemyFirstWaspDeathSeven.flip(false, true);
 
-        TextureRegion[] enemyFirstWaspDeaths = { enemyFirstWaspDeathOne, enemyFirstWaspDeathTwo, enemyFirstWaspDeathThree, enemyFirstWaspDeathFour, enemyFirstWaspDeathFive, enemyFirstWaspDeathSix, enemyFirstWaspDeathSeven};
+        TextureRegion[] enemyFirstWaspDeaths = {enemyFirstWaspDeathOne, enemyFirstWaspDeathTwo, enemyFirstWaspDeathThree, enemyFirstWaspDeathFour, enemyFirstWaspDeathFive, enemyFirstWaspDeathSix, enemyFirstWaspDeathSeven};
         enemyFirstWaspDeathAnimation = new Animation(0.1f, (Object[]) enemyFirstWaspDeaths);
         enemyFirstWaspDeathAnimation.setPlayMode(Animation.PlayMode.NORMAL);
     }
@@ -250,17 +256,20 @@ public class TextureHandler {
         batcher.enableBlending();
         drawPlayer(runTime);
 
-       //ENEMIES RENDERING
-        drawEnemyFirst(runTime);
-        drawEnemySecond(runTime);
-        drawEnemySecondOption(runTime);
-        drawEnemyFirstWasp(runTime);
-        drawEnemyFirstWaspDeath(runTime);
+        //ENEMIES RENDERING
+        drawEnemyFirst(runTime, enemy);
+//        drawEnemySecond(runTime);
+//        drawEnemySecondOption(runTime);
+//        drawEnemyFirstWasp(runTime);
+//        drawEnemyFirstWaspDeath(runTime);
+
+        //drawEnemyList();
 
         batcher.end();
 
         // Draw non-bitmap elements
-        // drawPlayerBoundingRect();
+//        drawPlayerBoundingRect();
+//        drawPEnemyBoundingRect(enemy);
     }
 
     private void fillBlackBg() {
@@ -353,17 +362,28 @@ public class TextureHandler {
         shapeRenderer.end();
     }
 
-    private void drawEnemyFirst(float runTime){
+    private void drawPEnemyBoundingRect(Enemy enemy) {
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+
+        // Draw player bounding rectangle
+        shapeRenderer.setColor(255f, 0f, 0f, 0.35f);
+        shapeRenderer.rect(enemy.getBoundingBox().x, enemy.getBoundingBox().y, enemy.getWidth(), enemy.getHeight());
+
+        shapeRenderer.end();
+    }
+
+    private void drawEnemyFirst(float runTime, Enemy enemy) {
+
         batcher.draw(
                 (TextureRegion) enemyFirstAnimation.getKeyFrame(runTime),
-                100,
-                100,
-                16,
-                16
+                enemy.getPosition().x,
+                enemy.getPosition().y,
+                enemy.getWidth(),
+                enemy.getHeight()
         );
     }
 
-    private void drawEnemySecond(float runTime){
+    private void drawEnemySecond(float runTime) {
         batcher.draw(
                 (TextureRegion) enemySecondAnimation.getKeyFrame(runTime),
                 100,
@@ -373,7 +393,7 @@ public class TextureHandler {
         );
     }
 
-    private void drawEnemySecondOption(float runTime){
+    private void drawEnemySecondOption(float runTime) {
         batcher.draw(
                 (TextureRegion) enemySecondOptionAnimation.getKeyFrame(runTime),
                 100,
@@ -383,7 +403,7 @@ public class TextureHandler {
         );
     }
 
-    private void drawEnemyFirstWasp(float runTime){
+    private void drawEnemyFirstWasp(float runTime) {
         batcher.draw(
                 (TextureRegion) enemyFirstWaspAnimation.getKeyFrame(runTime),
                 200,
@@ -393,7 +413,7 @@ public class TextureHandler {
         );
     }
 
-    private void drawEnemyFirstWaspDeath(float runTime){
+    private void drawEnemyFirstWaspDeath(float runTime) {
         batcher.draw(
                 (TextureRegion) enemyFirstWaspDeathAnimation.getKeyFrame(runTime),
                 250,
@@ -402,5 +422,6 @@ public class TextureHandler {
                 16
         );
     }
+
 }
 

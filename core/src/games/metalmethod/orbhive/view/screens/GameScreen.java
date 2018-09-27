@@ -19,6 +19,7 @@ public class GameScreen extends View {
 
         // Binds the inputHandler to the character
         setInput();
+
     }
 
     public int getMidPointY() {
@@ -38,4 +39,7 @@ public class GameScreen extends View {
         Gdx.input.setInputProcessor(new InputHandler(controller));
     }
 
+    public  float getRunTime(){
+        return runTime;
+    }
 }
