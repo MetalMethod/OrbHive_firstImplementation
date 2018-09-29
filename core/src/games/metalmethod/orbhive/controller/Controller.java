@@ -3,7 +3,6 @@ package games.metalmethod.orbhive.controller;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
-import com.badlogic.gdx.scenes.scene2d.ui.List;
 import games.metalmethod.orbhive.model.gameobjects.Enemy;
 import games.metalmethod.orbhive.model.gameobjects.EnemyFactory;
 import games.metalmethod.orbhive.model.gameobjects.Player;
@@ -39,11 +38,8 @@ public class Controller extends Game {
         gameScreen = new GameScreen(this);
         setScreen(gameScreen);
 
-
         int midPointY = gameScreen.getMidPointY();
         gameWorld = new GameWorld(midPointY);
-
-
     }
 
     public void update(float delta) {
@@ -53,7 +49,6 @@ public class Controller extends Game {
 
         // create enemy after 3 secs
         singleEnemy.update(delta);
-
     }
 
     @Override
@@ -75,59 +70,56 @@ public class Controller extends Game {
     }
 
     public void movePlayerUp() {
-        player.setVelocity((Vector)player.getVelocity().add(0, -Constants.movementVelocity));
+        player.setVelocity((Vector) player.getVelocity().add(0, -Constants.movementVelocity));
         isPlayerMoving = true;
     }
 
     public void movePlayerForward() {
-        player.setVelocity((Vector)player.getVelocity().add(Constants.movementVelocity, 0));
+        player.setVelocity((Vector) player.getVelocity().add(Constants.movementVelocity, 0));
         isPlayerMoving = true;
-
     }
 
     public void movePlayerDown() {
         player.setVelocity((Vector) player.getVelocity().add(0, Constants.movementVelocity));
         isPlayerMoving = true;
-
     }
 
     public void movePlayerBack() {
-        player.setVelocity((Vector)player.getVelocity().add(-Constants.movementVelocity, 0));
+        player.setVelocity((Vector) player.getVelocity().add(-Constants.movementVelocity, 0));
         isPlayerMoving = true;
-
     }
 
     public void stopPlayer() {
-        player.setVelocity((Vector)player.getVelocity().set(0, 0));
+        player.setVelocity((Vector) player.getVelocity().set(0, 0));
         isPlayerMoving = false;
     }
 
     public void stopMovePlayerY() {
-        player.setVelocity((Vector)player.getVelocity().set(player.getVelocity().x, 0));
+        player.setVelocity((Vector) player.getVelocity().set(player.getVelocity().x, 0));
         isPlayerMoving = false;
     }
 
     public void stopMovePlayerX() {
-        player.setVelocity((Vector)player.getVelocity().set(0, player.getVelocity().y));
+        player.setVelocity((Vector) player.getVelocity().set(0, player.getVelocity().y));
         isPlayerMoving = false;
     }
 
-    public void detectWalls(){
+    public void detectWalls() {
         //left
-        if(player.getPosition().x < 5  ){
-            player.setPosition((Vector)player.getPosition().set(5, player.getPosition().y));
+        if (player.getPosition().x < 5) {
+            player.setPosition((Vector) player.getPosition().set(5, player.getPosition().y));
         }
         //right
-        if(player.getPosition().x > 410 ){
-            player.setPosition((Vector)player.getPosition().set(410, player.getPosition().y));
+        if (player.getPosition().x > 410) {
+            player.setPosition((Vector) player.getPosition().set(410, player.getPosition().y));
         }
         //top
-        if(player.getPosition().y < 0 ){
-            player.setPosition((Vector)player.getPosition().set(player.getPosition().x, 0));
+        if (player.getPosition().y < 0) {
+            player.setPosition((Vector) player.getPosition().set(player.getPosition().x, 0));
         }
         //down
-        if(player.getPosition().y > 220){
-            player.setPosition((Vector)player.getPosition().set(player.getPosition().x, 220));
+        if (player.getPosition().y > 220) {
+            player.setPosition((Vector) player.getPosition().set(player.getPosition().x, 220));
         }
     }
 
@@ -139,7 +131,7 @@ public class Controller extends Game {
         return false;
     }
 
-    public Enemy createEnemy(){
+    public Enemy createEnemy() {
         return singleEnemy;
     }
 
