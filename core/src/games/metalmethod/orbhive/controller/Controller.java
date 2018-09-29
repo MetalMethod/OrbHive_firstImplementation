@@ -51,9 +51,9 @@ public class Controller extends Game {
         player.update(delta);
         detectWalls();
 
-        singleEnemy.update(delta);
         // create enemy after 3 secs
-        // pass to renderer
+        singleEnemy.update(delta);
+
     }
 
     @Override
@@ -142,6 +142,5 @@ public class Controller extends Game {
     public Enemy createEnemy(){
         return singleEnemy;
     }
-
 
 }
