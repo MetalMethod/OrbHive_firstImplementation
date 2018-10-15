@@ -83,4 +83,8 @@ public class Enemy {
     public BaseRectangle getBoundingBox() {
         return boundingBox;
     }
+
+    public void takeHit() {
+        reset(Constants.enemyCreationX);
+    }
 }

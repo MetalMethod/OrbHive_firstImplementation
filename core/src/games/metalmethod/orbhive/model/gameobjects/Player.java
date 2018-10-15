@@ -76,4 +76,8 @@ public class Player {
     public BaseRectangle getBoundingRectangle() {
         return boundingRectangle;
     }
+
+    public void takeHit(){
+        System.out.println("hit");
+    }
 }

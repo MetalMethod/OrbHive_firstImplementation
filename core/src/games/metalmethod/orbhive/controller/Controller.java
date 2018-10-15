@@ -3,6 +3,7 @@ package games.metalmethod.orbhive.controller;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
+import com.badlogic.gdx.math.Intersector;
 import games.metalmethod.orbhive.model.gameobjects.Enemy;
 import games.metalmethod.orbhive.model.gameobjects.EnemyFactory;
 import games.metalmethod.orbhive.model.gameobjects.Player;
@@ -46,6 +47,9 @@ public class Controller extends Game {
         runTime = gameScreen.getRunTime();
         player.update(delta);
         detectWalls();
+
+        detectPlayerCollisionEnemy(player, singleEnemy);
+
 
         // create enemy after 3 secs
         singleEnemy.update(delta);
@@ -134,6 +138,17 @@ public class Controller extends Game {
 
     public Enemy createEnemy() {
         return singleEnemy;
+    }
+
+    public boolean detectPlayerCollisionEnemy(Player player, Enemy enemy){
+
+        boolean result = Intersector.overlaps(player.getBoundingRectangle(), enemy.getBoundingBox());
+
+        if(result){
+            player.takeHit();
+            enemy.takeHit();
+        }
+        return result;
     }
 
 }

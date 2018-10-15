@@ -261,6 +261,7 @@ public class TextureHandler {
         //ENEMIES RENDERING
 //        drawEnemyFirst(runTime, enemy);
         drawEnemySecond(runTime, enemy2);
+
 //        drawEnemySecondOption(runTime);
          drawEnemyFirstWasp(runTime);
         drawEnemyFirstWaspDeath(runTime);
@@ -270,8 +271,8 @@ public class TextureHandler {
         batcher.end();
 
         // Draw non-bitmap elements
-//        drawPlayerBoundingRect();
-//        drawPEnemyBoundingRect(enemy);
+        drawPlayerBoundingRect();
+        drawEnemyBoundingRect(enemy);
     }
 
     private void fillBlackBg() {
@@ -364,7 +365,7 @@ public class TextureHandler {
         shapeRenderer.end();
     }
 
-    private void drawPEnemyBoundingRect(Enemy enemy) {
+    private void drawEnemyBoundingRect(Enemy enemy) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
         // Draw player bounding rectangle
