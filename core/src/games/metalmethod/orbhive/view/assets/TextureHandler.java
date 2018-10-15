@@ -70,6 +70,7 @@ public class TextureHandler {
     private Controller controller;
 
     private Enemy enemy;
+    private Enemy enemy2;
 
 
     public TextureHandler(Controller controller, GameWorld gameWorld, int gameHeight, int midPointY) {
@@ -96,6 +97,7 @@ public class TextureHandler {
         initAssets();
 
         enemy = controller.createEnemy();
+        enemy2 = controller.createEnemy();
     }
 
     private void initGameObjects() {
@@ -257,11 +259,11 @@ public class TextureHandler {
         drawPlayer(runTime);
 
         //ENEMIES RENDERING
-        drawEnemyFirst(runTime, enemy);
-//        drawEnemySecond(runTime);
+//        drawEnemyFirst(runTime, enemy);
+        drawEnemySecond(runTime, enemy2);
 //        drawEnemySecondOption(runTime);
-//        drawEnemyFirstWasp(runTime);
-//        drawEnemyFirstWaspDeath(runTime);
+         drawEnemyFirstWasp(runTime);
+        drawEnemyFirstWaspDeath(runTime);
 
         //drawEnemyList();
 
@@ -383,13 +385,13 @@ public class TextureHandler {
         );
     }
 
-    private void drawEnemySecond(float runTime) {
+    private void drawEnemySecond(float runTime, Enemy enemy) {
         batcher.draw(
                 (TextureRegion) enemySecondAnimation.getKeyFrame(runTime),
-                100,
-                200,
-                16,
-                16
+                enemy.getPosition().x,
+                enemy.getPosition().y,
+                enemy.getWidth(),
+                enemy.getHeight()
         );
     }
 

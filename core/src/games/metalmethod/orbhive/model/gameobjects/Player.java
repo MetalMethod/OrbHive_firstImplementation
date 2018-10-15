@@ -1,5 +1,6 @@
 package games.metalmethod.orbhive.model.gameobjects;
 
+import games.metalmethod.orbhive.model.Constants;
 import games.metalmethod.orbhive.view.interfaces.BaseRectangle;
 import games.metalmethod.orbhive.view.interfaces.Vector;
 
@@ -28,7 +29,7 @@ public class Player {
 
         this.position = new Vector(x, y);
         this.velocity = new Vector(0, 0);
-        this.acceleration = new Vector(0, 0);
+        this.acceleration = new Vector(Constants.wind, Constants.gravity);
 
         boundingRectangle = new BaseRectangle();
     }

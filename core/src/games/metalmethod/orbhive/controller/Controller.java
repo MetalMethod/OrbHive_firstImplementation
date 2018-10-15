@@ -70,6 +70,7 @@ public class Controller extends Game {
     }
 
     public void movePlayerUp() {
+
         player.setVelocity((Vector) player.getVelocity().add(0, -Constants.movementVelocity));
         isPlayerMoving = true;
     }
@@ -90,8 +91,8 @@ public class Controller extends Game {
     }
 
     public void stopPlayer() {
-        player.setVelocity((Vector) player.getVelocity().set(0, 0));
-        isPlayerMoving = false;
+        stopMovePlayerY();
+        stopMovePlayerX();
     }
 
     public void stopMovePlayerY() {

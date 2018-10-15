@@ -9,4 +9,11 @@ public class Constants {
     public static final int playerSize = 40;
 
     public static final int movementVelocity = 180;
+
+    public static final int movementAcceleration = 50;
+
+    public static final int gravity = 5;
+
+    public static final int wind = -3;
+
 }

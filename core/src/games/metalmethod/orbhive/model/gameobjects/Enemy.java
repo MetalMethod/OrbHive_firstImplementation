@@ -1,5 +1,6 @@
 package games.metalmethod.orbhive.model.gameobjects;
 
+import com.badlogic.gdx.math.MathUtils;
 import games.metalmethod.orbhive.model.Constants;
 import games.metalmethod.orbhive.view.interfaces.BaseRectangle;
 import games.metalmethod.orbhive.view.interfaces.Vector;
@@ -54,7 +55,8 @@ public class Enemy {
     }
 
     private float randomY() {
-        return (float)Math.random() * (250f - 1f) + 1f;
+        return MathUtils.random(1, 250);
+//        return (float)Math.random() * (250f - 1f) + 1f;
     }
 
     public void stop(){
