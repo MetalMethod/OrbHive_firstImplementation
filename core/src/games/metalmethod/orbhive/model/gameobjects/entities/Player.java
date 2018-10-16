@@ -8,6 +8,8 @@ public class Player extends GameEntity {
     public Player(int width, int height, Vector position) {
         super(width, height, position);
 
+        this.acceleration = new Vector(Constants.wind, Constants.gravity);
+
         currentState = EntityState.FULL;
         lifes = Constants.initialEntityLives;
     }
@@ -15,6 +17,7 @@ public class Player extends GameEntity {
     public void update(float delta) {
         velocity.add(acceleration.cpy().scl(delta));
         position.add(velocity.cpy().scl(delta));
+
 
         boundingRectangle.set(getPosition().x, getPosition().y , width, height);
 
@@ -46,6 +49,11 @@ public class Player extends GameEntity {
         this.lifes--;
 
         System.out.println("hit. remaining lifes: " + String.valueOf(this.lifes));
+
+    }
+
+    @Override
+    void reset() {
 
     }
 

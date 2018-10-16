@@ -390,7 +390,7 @@ public class TextureHandler {
 
         // Draw player bounding rectangle
         shapeRenderer.setColor(255f, 0f, 0f, 0.35f);
-        shapeRenderer.rect(enemy.getBoundingBox().x, enemy.getBoundingBox().y, enemy.getWidth(), enemy.getHeight());
+        shapeRenderer.rect(enemy.getBoundingRectangle().x, enemy.getBoundingRectangle().y, enemy.getWidth(), enemy.getHeight());
 
         shapeRenderer.end();
     }

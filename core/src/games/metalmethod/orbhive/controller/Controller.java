@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
 import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.MathUtils;
 import games.metalmethod.orbhive.model.gameobjects.entities.Enemy;
 import games.metalmethod.orbhive.model.gameobjects.EnemyFactory;
 import games.metalmethod.orbhive.model.gameobjects.entities.EntityState;
@@ -152,12 +153,12 @@ public class Controller extends Game {
 
     public boolean detectPlayerCollisionEnemy(Player player, Enemy enemy){
 
-        boolean result = Intersector.overlaps(player.getBoundingRectangle(), enemy.getBoundingBox());
+        boolean result = Intersector.overlaps(player.getBoundingRectangle(), enemy.getBoundingRectangle());
 
         if(result){
             playerHitTime = 0;
             player.takeHit(Constants.playerHitAcceleration);
-            enemy.takeHit();
+            enemy.takeHit(Constants.enemyHitAcceleration);
         }else {
             playerHitTime++;
 
@@ -197,4 +198,6 @@ public class Controller extends Game {
         return EntityState.DEAD;
 
     }
+
+
 }

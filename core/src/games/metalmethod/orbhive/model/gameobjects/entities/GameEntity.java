@@ -42,8 +42,9 @@ public abstract class GameEntity {
         this.height = height;
 
         this.position = position;
-        this.velocity = new Vector(0, 0);
-        this.acceleration = new Vector(Constants.wind, Constants.gravity);
+        velocity = new Vector(0, 0);
+        acceleration = new Vector(0,0);
+
 
         boundingRectangle = new BaseRectangle();
 
@@ -73,7 +74,7 @@ public abstract class GameEntity {
         return acceleration;
     }
 
-   public int getHeight() {
+    public int getHeight() {
         return height;
     }
 
@@ -81,11 +82,21 @@ public abstract class GameEntity {
         return width;
     }
 
+    public void stop() {
+        velocity.x = 0;
+        velocity.y = 0;
+    }
+
     public BaseRectangle getBoundingRectangle() {
         return boundingRectangle;
     }
 
     abstract void takeHit(int hitAmount);
+
+    /**
+     *  Override this method in subclasses for specific behaviors
+     */
+    abstract void reset();
 
     abstract void updateLifes();
 
