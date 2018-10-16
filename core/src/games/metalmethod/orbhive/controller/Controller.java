@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Intersector;
 import games.metalmethod.orbhive.model.gameobjects.Enemy;
 import games.metalmethod.orbhive.model.gameobjects.EnemyFactory;
 import games.metalmethod.orbhive.model.gameobjects.Player;
+import games.metalmethod.orbhive.model.gameobjects.PlayerState;
 import games.metalmethod.orbhive.view.assets.AssetLoader;
 import games.metalmethod.orbhive.view.interfaces.Vector;
 import games.metalmethod.orbhive.view.screens.GameScreen;
@@ -168,4 +169,26 @@ public class Controller extends Game {
                 return false;
             }
         }
+
+    public PlayerState playerState(Player player) {
+
+        if(player.getState() == PlayerState.FULL){
+                return PlayerState.FULL;
+        }
+
+        if(player.getState() == PlayerState.MID){
+            return PlayerState.MID;
+        }
+
+        if(player.getState() == PlayerState.LAST){
+            return PlayerState.LAST;
+        }
+
+//        if(player.getState() == PlayerState.DEAD){
+//            return PlayerState.DEAD;
+//        }
+
+        return PlayerState.DEAD;
+
+    }
 }

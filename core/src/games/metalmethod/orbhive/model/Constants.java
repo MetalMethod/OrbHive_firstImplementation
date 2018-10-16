@@ -17,4 +17,5 @@ public class Constants {
     public static final int wind = -3;
 
     public static int enemyHitAmount = 70;
+    public static int initialLives = 3;
 }

@@ -24,6 +24,9 @@ public class Player {
      */
     private BaseRectangle boundingRectangle;
 
+    private PlayerState currentState;
+    private int lives;
+
     public Player(float x, float y) {
         this.width = 40;
         this.height = 25;
@@ -33,6 +36,9 @@ public class Player {
         this.acceleration = new Vector(Constants.wind, Constants.gravity);
 
         boundingRectangle = new BaseRectangle();
+
+        this.currentState = PlayerState.FULL;
+        this.lives = Constants.initialLives;
     }
 
     public void update(float delta) {
@@ -40,6 +46,14 @@ public class Player {
         position.add(velocity.cpy().scl(delta));
 
         boundingRectangle.set(getPosition().x, getPosition().y + 7, width, height);
+
+        updateLifes();
+    }
+
+    private void updateLifes() {
+        if (this.lives < 1) {
+            this.lives = Constants.initialLives;
+        }
     }
 
     public Vector getPosition() {
@@ -78,9 +92,30 @@ public class Player {
         return boundingRectangle;
     }
 
-    public void takeHit(int hitAmount){
+    public void takeHit(int hitAmount) {
         this.velocity.set(this.getVelocity().add(-hitAmount, 0));
 
-        System.out.println("hit");
+        this.lives--;
+
+        System.out.println("lives");
+        System.out.println(this.lives);
+    }
+
+    public PlayerState getState() {
+        switch (this.lives) {
+            case 3:
+                currentState = PlayerState.FULL;
+                break;
+            case 2:
+                currentState = PlayerState.MID;
+                break;
+            case 1:
+                currentState = PlayerState.LAST;
+                break;
+            case 0:
+                currentState = PlayerState.DEAD;
+                break;
+        }
+        return currentState;
     }
 }

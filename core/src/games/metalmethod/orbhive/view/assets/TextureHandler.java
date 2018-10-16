@@ -13,6 +13,7 @@ import games.metalmethod.orbhive.controller.Controller;
 import games.metalmethod.orbhive.model.Constants;
 import games.metalmethod.orbhive.model.gameobjects.Enemy;
 import games.metalmethod.orbhive.model.gameobjects.Player;
+import games.metalmethod.orbhive.model.gameobjects.PlayerState;
 import games.metalmethod.orbhive.model.gameworld.GameWorld;
 
 public class TextureHandler {
@@ -256,7 +257,7 @@ public class TextureHandler {
 
         // Draw elements that require transparency
         batcher.enableBlending();
-        drawPlayer(runTime);
+        drawPlayer(runTime, playerState());
 
 
         //ENEMIES RENDERING
@@ -266,7 +267,7 @@ public class TextureHandler {
         // drawPlayerExplosion(runTime);
 
 //        drawEnemySecondOption(runTime);
-         drawEnemyFirstWasp(runTime);
+        drawEnemyFirstWasp(runTime);
 //        drawEnemyFirstWaspDeath(runTime);
 
         //drawEnemyList();
@@ -276,6 +277,23 @@ public class TextureHandler {
         // Draw non-bitmap elements
 //        drawPlayerBoundingRect();
 //        drawEnemyBoundingRect(enemy);
+    }
+
+    private TextureRegion playerState() {
+
+        if (controller.playerState(player) == PlayerState.FULL) {
+            return playerFull;
+        }
+
+        if (controller.playerState(player) == PlayerState.MID) {
+            return playerMid;
+        }
+
+        if (controller.playerState(player) == PlayerState.LAST) {
+            return playerLast;
+        }
+
+        return playerFull;
     }
 
     private void fillBlackBg() {
@@ -303,8 +321,7 @@ public class TextureHandler {
         }
     }
 
-    private void drawPlayer(float runTime) {
-        TextureRegion playerState = playerFull;
+    private void drawPlayer(float runTime, TextureRegion playerState) {
 
         batcher.draw(
                 playerState,
@@ -322,7 +339,7 @@ public class TextureHandler {
             drawEngine(runTime);
         }
 
-        if(controller.isPlayerHit()){
+        if (controller.isPlayerHit()) {
             drawPlayerExplosion(runTime);
         }
 
@@ -341,7 +358,7 @@ public class TextureHandler {
     private void drawPlayerExplosion(float runTime) {
         batcher.draw(
                 (TextureRegion) playerExplosionAnimation.getKeyFrame(runTime),
-                player.getPosition().x ,
+                player.getPosition().x,
                 player.getPosition().y,
                 48,
                 48
