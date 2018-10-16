@@ -1,4 +1,4 @@
-package games.metalmethod.orbhive.model.gameobjects;
+package games.metalmethod.orbhive.model.gameobjects.entities;
 
 import games.metalmethod.orbhive.model.Constants;
 import games.metalmethod.orbhive.view.interfaces.BaseRectangle;
@@ -10,59 +10,56 @@ import games.metalmethod.orbhive.view.interfaces.Vector;
  */
 public abstract class GameEntity {
 
-    private Vector position;
-    private Vector velocity;
-    private Vector acceleration;
+    protected Vector position;
+    protected Vector velocity;
+    protected Vector acceleration;
 
     /**
      * positive change in rotation is a clockwise rotation and that a negative change in rotation is a counterclockwise rotation.
      */
-    private float rotation;
+    protected float rotation;
 
-    private int width;
-    private int height;
+    protected int width;
+    protected int height;
 
 
     /**
      * Object for collision detection
      */
-    private BaseRectangle boundingRectangle;
+    protected BaseRectangle boundingRectangle;
 
-    private EntityState currentState;
-    private int lifes;
+    protected EntityState currentState;
+    protected int lifes;
 
-    /**
-     * Constructor
-     * @param x
-     * @param y
+    /***
+     *
+     * @param width
+     * @param height
+     * @param position
      */
-    public GameEntity(float x, float y) {
-        this.width = 40;
-        this.height = 25;
+    public GameEntity(int width, int height, Vector position) {
+        this.width = width;
+        this.height = height;
 
-        this.position = new Vector(x, y);
+        this.position = position;
         this.velocity = new Vector(0, 0);
         this.acceleration = new Vector(Constants.wind, Constants.gravity);
 
         boundingRectangle = new BaseRectangle();
 
         this.currentState = EntityState.FULL;
-        this.lifes = Constants.initialLives;
+        this.lifes = Constants.initialEntityLives;
     }
 
-    /**
+    /***
+     *r
      * Update , called every frame
+     *
      * @param delta
      */
-    public void update(float delta) {
-        velocity.add(acceleration.cpy().scl(delta));
-        position.add(velocity.cpy().scl(delta));
+    abstract void update(float delta);
 
-        boundingRectangle.set(getPosition().x, getPosition().y + 7, width, height);
-
-    }
-
-
+    abstract EntityState getState();
 
     public Vector getPosition() {
         return position;
@@ -76,19 +73,7 @@ public abstract class GameEntity {
         return acceleration;
     }
 
-    public void setPosition(Vector position) {
-        this.position = position;
-    }
-
-    public void setVelocity(Vector velocity) {
-        this.velocity = velocity;
-    }
-
-    public void setAcceleration(Vector acceleration) {
-        this.acceleration = acceleration;
-    }
-
-    public int getHeight() {
+   public int getHeight() {
         return height;
     }
 
@@ -102,6 +87,6 @@ public abstract class GameEntity {
 
     abstract void takeHit(int hitAmount);
 
-    abstract EntityState getState();
+    abstract void updateLifes();
 
 }

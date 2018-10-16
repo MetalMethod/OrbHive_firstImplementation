@@ -8,6 +8,9 @@ public class Constants {
     public static final int enemyCreationX = screenWidth + 20;
 
     public static final int playerSize = 40;
+    public static final int playerWidth = 40;
+    public static final int playerHeight = 25;
+
 
 
 
@@ -24,5 +27,5 @@ public class Constants {
 
 
     //GAME
-    public static int initialLives = 3;
+    public static int initialEntityLives = 3;
 }

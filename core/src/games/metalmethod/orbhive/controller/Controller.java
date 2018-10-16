@@ -4,10 +4,10 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
 import com.badlogic.gdx.math.Intersector;
-import games.metalmethod.orbhive.model.gameobjects.Enemy;
+import games.metalmethod.orbhive.model.gameobjects.entities.Enemy;
 import games.metalmethod.orbhive.model.gameobjects.EnemyFactory;
-import games.metalmethod.orbhive.model.gameobjects.EntityState;
-import games.metalmethod.orbhive.model.gameobjects.Player;
+import games.metalmethod.orbhive.model.gameobjects.entities.EntityState;
+import games.metalmethod.orbhive.model.gameobjects.entities.Player;
 import games.metalmethod.orbhive.view.assets.AssetLoader;
 import games.metalmethod.orbhive.view.interfaces.Vector;
 import games.metalmethod.orbhive.view.screens.GameScreen;
@@ -40,7 +40,7 @@ public class Controller extends Game {
         singleEnemy = enemyFactory.createEnemy();
         waspEnemy = enemyFactory.createEnemy();
 
-        player = new Player(50, 110);
+        player = new Player(Constants.playerWidth, Constants.playerHeight, new Vector(50, 110));
         playerHitTime = 500;
 
         gameScreen = new GameScreen(this);

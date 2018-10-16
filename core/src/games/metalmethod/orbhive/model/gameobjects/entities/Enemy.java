@@ -1,4 +1,4 @@
-package games.metalmethod.orbhive.model.gameobjects;
+package games.metalmethod.orbhive.model.gameobjects.entities;
 
 import com.badlogic.gdx.math.MathUtils;
 import games.metalmethod.orbhive.model.Constants;

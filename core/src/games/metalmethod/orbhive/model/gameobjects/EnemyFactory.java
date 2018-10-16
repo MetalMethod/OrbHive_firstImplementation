@@ -2,6 +2,7 @@ package games.metalmethod.orbhive.model.gameobjects;
 
 
 import games.metalmethod.orbhive.model.Constants;
+import games.metalmethod.orbhive.model.gameobjects.entities.Enemy;
 
 public class EnemyFactory {
 

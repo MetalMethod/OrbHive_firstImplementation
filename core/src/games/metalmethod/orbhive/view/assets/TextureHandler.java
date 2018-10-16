@@ -11,9 +11,9 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import games.metalmethod.orbhive.controller.Controller;
 import games.metalmethod.orbhive.model.Constants;
-import games.metalmethod.orbhive.model.gameobjects.Enemy;
-import games.metalmethod.orbhive.model.gameobjects.EntityState;
-import games.metalmethod.orbhive.model.gameobjects.Player;
+import games.metalmethod.orbhive.model.gameobjects.entities.Enemy;
+import games.metalmethod.orbhive.model.gameobjects.entities.EntityState;
+import games.metalmethod.orbhive.model.gameobjects.entities.Player;
 import games.metalmethod.orbhive.model.gameworld.GameWorld;
 
 public class TextureHandler {

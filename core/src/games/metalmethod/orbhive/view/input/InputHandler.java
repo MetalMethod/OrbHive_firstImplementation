@@ -1,9 +1,8 @@
 package games.metalmethod.orbhive.view.input;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import games.metalmethod.orbhive.controller.Controller;
-import games.metalmethod.orbhive.model.gameobjects.Player;
+import games.metalmethod.orbhive.model.gameobjects.entities.Player;
 import games.metalmethod.orbhive.model.gameworld.GameWorld;
 
 public class InputHandler implements InputProcessor {

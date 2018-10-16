@@ -1,4 +1,4 @@
-package games.metalmethod.orbhive.model.gameobjects;
+package games.metalmethod.orbhive.model.gameobjects.entities;
 
 public enum EntityState {
     FULL,
