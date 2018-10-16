@@ -149,7 +149,7 @@ public class Controller extends Game {
 
         if(result){
             playerHitTime = 0;
-            player.takeHit();
+            player.takeHit(Constants.enemyHitAmount);
             enemy.takeHit();
         }else {
             playerHitTime++;

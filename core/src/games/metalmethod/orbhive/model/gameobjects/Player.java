@@ -78,7 +78,9 @@ public class Player {
         return boundingRectangle;
     }
 
-    public void takeHit(){
+    public void takeHit(int hitAmount){
+        this.velocity.set(this.getVelocity().add(-hitAmount, 0));
+
         System.out.println("hit");
     }
 }
