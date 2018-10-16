@@ -25,7 +25,7 @@ public class Player {
     private BaseRectangle boundingRectangle;
 
     private PlayerState currentState;
-    private int lives;
+    private int lifes;
 
     public Player(float x, float y) {
         this.width = 40;
@@ -38,7 +38,7 @@ public class Player {
         boundingRectangle = new BaseRectangle();
 
         this.currentState = PlayerState.FULL;
-        this.lives = Constants.initialLives;
+        this.lifes = Constants.initialLives;
     }
 
     public void update(float delta) {
@@ -51,8 +51,8 @@ public class Player {
     }
 
     private void updateLifes() {
-        if (this.lives < 1) {
-            this.lives = Constants.initialLives;
+        if (this.lifes < 1) {
+            this.lifes = Constants.initialLives;
         }
     }
 
@@ -95,14 +95,14 @@ public class Player {
     public void takeHit(int hitAmount) {
         this.velocity.set(this.getVelocity().add(-hitAmount, 0));
 
-        this.lives--;
+        this.lifes--;
 
-        System.out.println("lives");
-        System.out.println(this.lives);
+        System.out.println("lifes");
+        System.out.println(this.lifes);
     }
 
     public PlayerState getState() {
-        switch (this.lives) {
+        switch (this.lifes) {
             case 3:
                 currentState = PlayerState.FULL;
                 break;
