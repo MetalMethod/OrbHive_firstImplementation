@@ -58,13 +58,9 @@ public class Controller extends Game {
         detectPlayerCollisionEnemy(player, singleEnemy);
         detectPlayerCollisionEnemy(player, waspEnemy);
 
-
         // create enemy after 3 secs
         singleEnemy.update(delta);
-
         waspEnemy.update(delta);
-
-
 
     }
 
@@ -160,7 +156,7 @@ public class Controller extends Game {
 
         if(result){
             playerHitTime = 0;
-            player.takeHit(Constants.enemyHitAmount);
+            player.takeHit(Constants.playerHitAcceleration);
             enemy.takeHit();
         }else {
             playerHitTime++;
