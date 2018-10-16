@@ -26,6 +26,8 @@ public class Controller extends Game {
 
     private float runTime;
 
+    private float playerHitTime;
+
     @Override
     public void create() {
         Gdx.app.log("Controller", "created");
@@ -35,6 +37,7 @@ public class Controller extends Game {
         singleEnemy = enemyFactory.createSimpleEnemy();
 
         player = new Player(50, 110);
+        playerHitTime = 500;
 
         gameScreen = new GameScreen(this);
         setScreen(gameScreen);
@@ -53,6 +56,9 @@ public class Controller extends Game {
 
         // create enemy after 3 secs
         singleEnemy.update(delta);
+
+
+
     }
 
     @Override
@@ -132,9 +138,6 @@ public class Controller extends Game {
         return isPlayerMoving;
     }
 
-    public boolean isPlayerDying() {
-        return false;
-    }
 
     public Enemy createEnemy() {
         return singleEnemy;
@@ -145,10 +148,24 @@ public class Controller extends Game {
         boolean result = Intersector.overlaps(player.getBoundingRectangle(), enemy.getBoundingBox());
 
         if(result){
+            playerHitTime = 0;
             player.takeHit();
             enemy.takeHit();
+        }else {
+            playerHitTime++;
+
         }
+
+
         return result;
     }
 
+    public boolean isPlayerHit() {
+
+        if(playerHitTime < 50){
+                return true;
+            }else {
+                return false;
+            }
+        }
 }

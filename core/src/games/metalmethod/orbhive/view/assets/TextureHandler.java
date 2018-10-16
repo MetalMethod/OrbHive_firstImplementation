@@ -159,7 +159,7 @@ public class TextureHandler {
         playerExplosionSix.flip(false, true);
         TextureRegion[] playerExplosions = {playerExplosionOne, playerExplosionTwo, playerExplosionThree, playerExplosionFour, playerExplosionFive, playerExplosionSix};
         playerExplosionAnimation = new Animation(0.15f, (Object[]) playerExplosions);
-        playerExplosionAnimation.setPlayMode(Animation.PlayMode.NORMAL);
+        playerExplosionAnimation.setPlayMode(Animation.PlayMode.LOOP);
 
         // ENEMIES
         enemyFirstOne = new TextureRegion(sprites, 0, 133, 16, 14);
@@ -258,21 +258,24 @@ public class TextureHandler {
         batcher.enableBlending();
         drawPlayer(runTime);
 
+
         //ENEMIES RENDERING
 //        drawEnemyFirst(runTime, enemy);
         drawEnemySecond(runTime, enemy2);
 
+        // drawPlayerExplosion(runTime);
+
 //        drawEnemySecondOption(runTime);
          drawEnemyFirstWasp(runTime);
-        drawEnemyFirstWaspDeath(runTime);
+//        drawEnemyFirstWaspDeath(runTime);
 
         //drawEnemyList();
 
         batcher.end();
 
         // Draw non-bitmap elements
-        drawPlayerBoundingRect();
-        drawEnemyBoundingRect(enemy);
+//        drawPlayerBoundingRect();
+//        drawEnemyBoundingRect(enemy);
     }
 
     private void fillBlackBg() {
@@ -319,7 +322,7 @@ public class TextureHandler {
             drawEngine(runTime);
         }
 
-        if (controller.isPlayerDying()) {
+        if(controller.isPlayerHit()){
             drawPlayerExplosion(runTime);
         }
 
@@ -338,10 +341,10 @@ public class TextureHandler {
     private void drawPlayerExplosion(float runTime) {
         batcher.draw(
                 (TextureRegion) playerExplosionAnimation.getKeyFrame(runTime),
-                100,
-                100,
-                32,
-                32
+                player.getPosition().x ,
+                player.getPosition().y,
+                48,
+                48
         );
     }
 

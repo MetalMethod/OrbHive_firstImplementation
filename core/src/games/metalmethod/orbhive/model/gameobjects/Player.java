@@ -18,6 +18,7 @@ public class Player {
     private int width;
     private int height;
 
+
     /**
      * Object for collision detection
      */
