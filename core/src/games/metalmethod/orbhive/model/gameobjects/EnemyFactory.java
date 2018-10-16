@@ -6,7 +6,7 @@ import games.metalmethod.orbhive.model.Constants;
 public class EnemyFactory {
 
 
-    public Enemy createSimpleEnemy(){
+    public Enemy createEnemy(){
         return new Enemy(Constants.enemyCreationX, 150, 16 , 16, -200);
     }
 

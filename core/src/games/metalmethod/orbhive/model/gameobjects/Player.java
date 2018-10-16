@@ -97,8 +97,8 @@ public class Player {
 
         this.lifes--;
 
-        System.out.println("lifes");
-        System.out.println(this.lifes);
+        System.out.println("hit. remaining lifes: " + String.valueOf(this.lifes));
+
     }
 
     public PlayerState getState() {

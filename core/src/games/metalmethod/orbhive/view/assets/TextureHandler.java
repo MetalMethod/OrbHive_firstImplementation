@@ -71,7 +71,7 @@ public class TextureHandler {
     private Controller controller;
 
     private Enemy enemy;
-    private Enemy enemy2;
+    private Enemy wasp;
 
 
     public TextureHandler(Controller controller, GameWorld gameWorld, int gameHeight, int midPointY) {
@@ -97,8 +97,8 @@ public class TextureHandler {
         initGameObjects();
         initAssets();
 
-        enemy = controller.createEnemy();
-        enemy2 = controller.createEnemy();
+        enemy = controller.createSingleEnemy();
+        wasp = controller.createWaspEnemy();
     }
 
     private void initGameObjects() {
@@ -262,13 +262,13 @@ public class TextureHandler {
 
         //ENEMIES RENDERING
 //        drawEnemyFirst(runTime, enemy);
-        drawEnemySecond(runTime, enemy2);
+        drawEnemySecond(runTime, enemy);
 
         // drawPlayerExplosion(runTime);
 
 //        drawEnemySecondOption(runTime);
-        drawEnemyFirstWasp(runTime);
-//        drawEnemyFirstWaspDeath(runTime);
+        drawWasp(runTime, wasp);
+//        drawWaspDeath(runTime);
 
         //drawEnemyList();
 
@@ -336,7 +336,7 @@ public class TextureHandler {
         );
 
         if (controller.isPlayerMoving()) {
-            drawEngine(runTime);
+            drawPlayerEngine(runTime);
         }
 
         if (controller.isPlayerHit()) {
@@ -345,7 +345,7 @@ public class TextureHandler {
 
     }
 
-    private void drawEngine(float runTime) {
+    private void drawPlayerEngine(float runTime) {
         batcher.draw(
                 (TextureRegion) engineAnimation.getKeyFrame(runTime),
                 player.getPosition().x + 1,
@@ -426,17 +426,17 @@ public class TextureHandler {
         );
     }
 
-    private void drawEnemyFirstWasp(float runTime) {
+    private void drawWasp(float runTime, Enemy enemy) {
         batcher.draw(
                 (TextureRegion) enemyFirstWaspAnimation.getKeyFrame(runTime),
-                200,
-                100,
+                enemy.getPosition().x,
+                enemy.getPosition().y,
                 16,
                 16
         );
     }
 
-    private void drawEnemyFirstWaspDeath(float runTime) {
+    private void drawWaspDeath(float runTime) {
         batcher.draw(
                 (TextureRegion) enemyFirstWaspDeathAnimation.getKeyFrame(runTime),
                 250,

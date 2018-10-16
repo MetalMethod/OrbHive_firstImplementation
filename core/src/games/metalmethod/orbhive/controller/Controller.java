@@ -24,6 +24,8 @@ public class Controller extends Game {
 
     private EnemyFactory enemyFactory;
     private Enemy singleEnemy;
+    private Enemy waspEnemy;
+
 
     private float runTime;
 
@@ -35,7 +37,8 @@ public class Controller extends Game {
 
         AssetLoader.load();
         enemyFactory = new EnemyFactory();
-        singleEnemy = enemyFactory.createSimpleEnemy();
+        singleEnemy = enemyFactory.createEnemy();
+        waspEnemy = enemyFactory.createEnemy();
 
         player = new Player(50, 110);
         playerHitTime = 500;
@@ -53,10 +56,13 @@ public class Controller extends Game {
         detectWalls();
 
         detectPlayerCollisionEnemy(player, singleEnemy);
+        detectPlayerCollisionEnemy(player, waspEnemy);
 
 
         // create enemy after 3 secs
         singleEnemy.update(delta);
+
+        waspEnemy.update(delta);
 
 
 
@@ -140,8 +146,12 @@ public class Controller extends Game {
     }
 
 
-    public Enemy createEnemy() {
+    public Enemy createSingleEnemy() {
         return singleEnemy;
+    }
+
+    public Enemy createWaspEnemy() {
+        return waspEnemy;
     }
 
     public boolean detectPlayerCollisionEnemy(Player player, Enemy enemy){
