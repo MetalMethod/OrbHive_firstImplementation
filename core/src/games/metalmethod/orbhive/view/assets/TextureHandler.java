@@ -12,8 +12,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import games.metalmethod.orbhive.controller.Controller;
 import games.metalmethod.orbhive.model.Constants;
 import games.metalmethod.orbhive.model.gameobjects.Enemy;
+import games.metalmethod.orbhive.model.gameobjects.EntityState;
 import games.metalmethod.orbhive.model.gameobjects.Player;
-import games.metalmethod.orbhive.model.gameobjects.PlayerState;
 import games.metalmethod.orbhive.model.gameworld.GameWorld;
 
 public class TextureHandler {
@@ -281,15 +281,15 @@ public class TextureHandler {
 
     private TextureRegion playerState() {
 
-        if (controller.playerState(player) == PlayerState.FULL) {
+        if (controller.playerState(player) == EntityState.FULL) {
             return playerFull;
         }
 
-        if (controller.playerState(player) == PlayerState.MID) {
+        if (controller.playerState(player) == EntityState.MID) {
             return playerMid;
         }
 
-        if (controller.playerState(player) == PlayerState.LAST) {
+        if (controller.playerState(player) == EntityState.LAST) {
             return playerLast;
         }
 

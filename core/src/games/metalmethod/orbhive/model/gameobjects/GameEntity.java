@@ -4,7 +4,11 @@ import games.metalmethod.orbhive.model.Constants;
 import games.metalmethod.orbhive.view.interfaces.BaseRectangle;
 import games.metalmethod.orbhive.view.interfaces.Vector;
 
-public class Player {
+/**
+ * Abstract class for all game entities that can be controlled.
+ * made to abstract Player, Enemy
+ */
+public abstract class GameEntity {
 
     private Vector position;
     private Vector velocity;
@@ -27,7 +31,12 @@ public class Player {
     private EntityState currentState;
     private int lifes;
 
-    public Player(float x, float y) {
+    /**
+     * Constructor
+     * @param x
+     * @param y
+     */
+    public GameEntity(float x, float y) {
         this.width = 40;
         this.height = 25;
 
@@ -41,20 +50,19 @@ public class Player {
         this.lifes = Constants.initialLives;
     }
 
+    /**
+     * Update , called every frame
+     * @param delta
+     */
     public void update(float delta) {
         velocity.add(acceleration.cpy().scl(delta));
         position.add(velocity.cpy().scl(delta));
 
         boundingRectangle.set(getPosition().x, getPosition().y + 7, width, height);
 
-        updateLifes();
     }
 
-    private void updateLifes() {
-        if (this.lifes < 1) {
-            this.lifes = Constants.initialLives;
-        }
-    }
+
 
     public Vector getPosition() {
         return position;
@@ -92,30 +100,8 @@ public class Player {
         return boundingRectangle;
     }
 
-    public void takeHit(int hitAmount) {
-        this.velocity.set(this.getVelocity().add(-hitAmount, 0));
+    abstract void takeHit(int hitAmount);
 
-        this.lifes--;
+    abstract EntityState getState();
 
-        System.out.println("hit. remaining lifes: " + String.valueOf(this.lifes));
-
-    }
-
-    public EntityState getState() {
-        switch (this.lifes) {
-            case 3:
-                currentState = EntityState.FULL;
-                break;
-            case 2:
-                currentState = EntityState.MID;
-                break;
-            case 1:
-                currentState = EntityState.LAST;
-                break;
-            case 0:
-                currentState = EntityState.DEAD;
-                break;
-        }
-        return currentState;
-    }
 }

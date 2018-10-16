@@ -1,8 +1,9 @@
 package games.metalmethod.orbhive.model.gameobjects;
 
-public enum PlayerState {
+public enum EntityState {
     FULL,
     MID,
     LAST,
-    DEAD
+    DEAD,
+    NEULTRAL
 }
