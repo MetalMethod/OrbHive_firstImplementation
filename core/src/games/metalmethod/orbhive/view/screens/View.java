@@ -6,6 +6,7 @@ import games.metalmethod.orbhive.controller.Controller;
 import games.metalmethod.orbhive.model.gameworld.GameWorld;
 import games.metalmethod.orbhive.view.assets.TextureHandler;
 import games.metalmethod.orbhive.model.Constants;
+import games.metalmethod.orbhive.view.input.InputHandler;
 
 public abstract class View implements Screen {
 
@@ -32,11 +33,28 @@ public abstract class View implements Screen {
 
         midPointY = (int) (gameHeight / 2);
 
+        // get gameWorld
+        gameWorld = controller.getGameWorld();
+
+        // get textureHandler
+        textureHandler = new TextureHandler(controller, gameWorld, (int)gameHeight, midPointY);
+        textureHandler.render(runTime);
+
+        // Binds the inputHandler to the character
+        setInput();
+    }
+
+    public void setInput(){
+        Gdx.input.setInputProcessor(new InputHandler(controller));
     }
 
     @Override
     public void render(float delta) {
+        controller.update(delta);
 
+        runTime += delta;
+        // gameWorld.update(delta);
+        textureHandler.render(runTime);
     }
 
     @Override
@@ -66,7 +84,7 @@ public abstract class View implements Screen {
 
     @Override
     public void dispose() {
-
+        textureHandler.dispose();
     }
 
 }
