@@ -74,4 +74,8 @@ public class Player extends GameEntity {
         }
         return currentState;
     }
+
+    public void shoot(){
+        System.out.println("shoot");
+    }
 }

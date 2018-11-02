@@ -67,6 +67,7 @@ public class TextureHandler {
 
     private Animation enemyFirstWaspAnimation;
     private Animation enemyFirstWaspDeathAnimation;
+    private Animation playerShootAnimation;
 
     private Controller controller;
 
@@ -161,6 +162,16 @@ public class TextureHandler {
         TextureRegion[] playerExplosions = {playerExplosionOne, playerExplosionTwo, playerExplosionThree, playerExplosionFour, playerExplosionFive, playerExplosionSix};
         playerExplosionAnimation = new Animation(0.15f, (Object[]) playerExplosions);
         playerExplosionAnimation.setPlayMode(Animation.PlayMode.LOOP);
+
+
+
+
+        //TODO: player shooting sprites
+        TextureRegion[] playerShootFrames = {};
+        playerShootAnimation = new Animation(0.15f, (Object[]) playerShootFrames);
+        playerExplosionAnimation.setPlayMode(Animation.PlayMode.LOOP);
+
+
 
         // ENEMIES
         enemyFirstOne = new TextureRegion(sprites, 0, 133, 16, 14);
@@ -343,6 +354,20 @@ public class TextureHandler {
             drawPlayerExplosion(runTime);
         }
 
+        if(controller.isPlayerShooting()){
+            drawPlayerShot(runTime);
+        }
+
+    }
+
+    private void drawPlayerShot(float runTime) {
+        batcher.draw(
+                (TextureRegion) playerShootAnimation.getKeyFrame(runTime),
+                player.getPosition().x + 50,
+                player.getPosition().y +50,
+                10,
+                10
+        );
     }
 
     private void drawPlayerEngine(float runTime) {
@@ -383,7 +408,17 @@ public class TextureHandler {
         shapeRenderer.rect(player.getBoundingRectangle().x, player.getBoundingRectangle().y, player.getWidth(), player.getHeight());
 
         shapeRenderer.end();
+
     }
+        private void drawPlayerBulletRect(){
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+
+            // Draw player bullet bounding rectangle
+            shapeRenderer.setColor(255f, 0f, 0f, 0.35f);
+            shapeRenderer.rect(player.getBoundingRectangle().x, player.getBoundingRectangle().y, 10,10);
+            shapeRenderer.end();
+
+        }
 
     private void drawEnemyBoundingRect(Enemy enemy) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);

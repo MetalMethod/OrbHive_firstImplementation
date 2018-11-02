@@ -1,5 +1,6 @@
 package games.metalmethod.orbhive.view.input;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import games.metalmethod.orbhive.controller.Controller;
 import games.metalmethod.orbhive.model.gameobjects.entities.Player;
@@ -20,7 +21,7 @@ public class InputHandler implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-//        Gdx.app.log("key pressed: ", String.valueOf(keycode));
+        Gdx.app.log("key pressed: ", String.valueOf(keycode));
 
         switch (keycode) {
             case 51:
@@ -43,9 +44,18 @@ public class InputHandler implements InputProcessor {
                 this.movePlayerBack();
                 break;
             }
+            case 62:
+            case 41: {
+                this.playerShoot();
+                break;
+            }
 
         }
         return true;
+    }
+
+    private void playerShoot() {
+        controller.playerShoot();
     }
 
     @Override

@@ -200,4 +200,12 @@ public class Controller extends Game {
     }
 
 
+    public void playerShoot() {
+        player.shoot();
+
+    }
+
+    public boolean isPlayerShooting() {
+        return false;
+    }
 }
