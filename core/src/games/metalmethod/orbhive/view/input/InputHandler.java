@@ -26,33 +26,32 @@ public class InputHandler implements InputProcessor {
         switch (keycode) {
             case Input.Keys.W:
             case Input.Keys.UP: {
-                this.movePlayerUp();
+                controller.movePlayerUp();
                 break;
             }
             case Input.Keys.D:
             case Input.Keys.RIGHT: {
-                this.movePlayerForward();
+                controller.movePlayerForward();
                 break;
             }
             case Input.Keys.S:
             case Input.Keys.DOWN: {
-                this.movePlayerDown();
+                controller.movePlayerDown();
                 break;
             }
             case Input.Keys.A:
             case Input.Keys.LEFT: {
-                this.movePlayerBack();
+                controller.movePlayerBack();
                 break;
             }
 
             case Input.Keys.SPACE:
             case Input.Keys.M: {
-                this.playerShoot();
+                controller.playerShoot();
             }
         }
         return true;
     }
-
 
 
     @Override
@@ -60,22 +59,22 @@ public class InputHandler implements InputProcessor {
         switch (keycode) {
             case Input.Keys.W:
             case Input.Keys.UP: {
-                this.stopMovePlayerUp();
+                controller.stopMovePlayerY();
                 break;
             }
             case Input.Keys.D:
             case Input.Keys.RIGHT: {
-                this.stopMovePlayerForward();
+                controller.stopMovePlayerX();
                 break;
             }
             case Input.Keys.S:
             case Input.Keys.DOWN: {
-                this.stopMovePlayerDown();
+                controller.stopMovePlayerY();
                 break;
             }
             case Input.Keys.A:
             case Input.Keys.LEFT: {
-                this.stopMovePlayerBack();
+                controller.stopMovePlayerX();
                 break;
             }
         }
@@ -112,43 +111,4 @@ public class InputHandler implements InputProcessor {
         return false;
     }
 
-    private void movePlayerUp() {
-        this.controller.movePlayerUp();
-    }
-
-    private void movePlayerForward() {
-        this.controller.movePlayerForward();
-    }
-
-    private void movePlayerBack() {
-        this.controller.movePlayerBack();
-    }
-
-    private void movePlayerDown() {
-        this.controller.movePlayerDown();
-    }
-
-    private void stopMovePlayerUp() {
-        this.controller.stopMovePlayerY();
-    }
-
-    private void stopMovePlayerForward() {
-        this.controller.stopMovePlayerX();
-    }
-
-    private void stopMovePlayerDown() {
-        this.controller.stopMovePlayerY();
-    }
-
-    private void stopMovePlayerBack() {
-        this.controller.stopMovePlayerX();
-    }
-
-    private void stopPlayer() {
-        this.controller.stopPlayer();
-    }
-
-    private void playerShoot() {
-        controller.playerShoot();
-    }
 }
