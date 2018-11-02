@@ -1,6 +1,7 @@
 package games.metalmethod.orbhive.view.input;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import games.metalmethod.orbhive.controller.Controller;
 import games.metalmethod.orbhive.model.gameobjects.entities.Player;
@@ -21,63 +22,59 @@ public class InputHandler implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-        Gdx.app.log("key pressed: ", String.valueOf(keycode));
-
+//        Gdx.app.log("key pressed: ", String.valueOf(keycode));
         switch (keycode) {
-            case 51:
-            case 19: {
+            case Input.Keys.W:
+            case Input.Keys.UP: {
                 this.movePlayerUp();
                 break;
             }
-            case 32:
-            case 22: {
+            case Input.Keys.D:
+            case Input.Keys.RIGHT: {
                 this.movePlayerForward();
                 break;
             }
-            case 47:
-            case 20: {
+            case Input.Keys.S:
+            case Input.Keys.DOWN: {
                 this.movePlayerDown();
                 break;
             }
-            case 29:
-            case 21: {
+            case Input.Keys.A:
+            case Input.Keys.LEFT: {
                 this.movePlayerBack();
                 break;
             }
-            case 62:
-            case 41: {
-                this.playerShoot();
-                break;
-            }
 
+            case Input.Keys.SPACE:
+            case Input.Keys.M: {
+                this.playerShoot();
+            }
         }
         return true;
     }
 
-    private void playerShoot() {
-        controller.playerShoot();
-    }
+
 
     @Override
     public boolean keyUp(int keycode) {
         switch (keycode) {
-            case 51:
-            case 19: {
+            case Input.Keys.W:
+            case Input.Keys.UP: {
                 this.stopMovePlayerUp();
                 break;
             }
-            case 32:
-            case 22: {
+            case Input.Keys.D:
+            case Input.Keys.RIGHT: {
                 this.stopMovePlayerForward();
                 break;
             }
-            case 47:
-            case 20: {
+            case Input.Keys.S:
+            case Input.Keys.DOWN: {
                 this.stopMovePlayerDown();
                 break;
             }
-            case 29:
-            case 21: {
+            case Input.Keys.A:
+            case Input.Keys.LEFT: {
                 this.stopMovePlayerBack();
                 break;
             }
@@ -151,4 +148,7 @@ public class InputHandler implements InputProcessor {
         this.controller.stopPlayer();
     }
 
+    private void playerShoot() {
+        controller.playerShoot();
+    }
 }
