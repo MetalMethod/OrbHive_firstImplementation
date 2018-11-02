@@ -4,8 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
 import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.MathUtils;
-import games.metalmethod.orbhive.model.gameobjects.entities.Enemy;
+import games.metalmethod.orbhive.model.gameobjects.entities.BasicEnemy;
 import games.metalmethod.orbhive.model.gameobjects.EnemyFactory;
 import games.metalmethod.orbhive.model.gameobjects.entities.EntityState;
 import games.metalmethod.orbhive.model.gameobjects.entities.Player;
@@ -24,8 +23,7 @@ public class Controller extends Game {
     private boolean isPlayerMoving = false;
 
     private EnemyFactory enemyFactory;
-    private Enemy singleEnemy;
-    private Enemy waspEnemy;
+
 
 
     private float runTime;
@@ -38,8 +36,6 @@ public class Controller extends Game {
 
         AssetLoader.load();
         enemyFactory = new EnemyFactory();
-        singleEnemy = enemyFactory.createEnemy();
-        waspEnemy = enemyFactory.createEnemy();
 
         player = new Player(Constants.playerWidth, Constants.playerHeight, new Vector(50, 110));
         playerHitTime = 500;
@@ -56,12 +52,13 @@ public class Controller extends Game {
         player.update(delta);
         detectWalls();
 
-        detectPlayerCollisionEnemy(player, singleEnemy);
-        detectPlayerCollisionEnemy(player, waspEnemy);
+        gameScreen.update(delta);
 
         // create enemy after 3 secs
-        singleEnemy.update(delta);
-        waspEnemy.update(delta);
+        //singleBasicEnemy.update(delta);
+        //waspBasicEnemy.update(delta);
+
+        enemyFactory.update(delta);
 
     }
 
@@ -144,27 +141,26 @@ public class Controller extends Game {
     }
 
 
-    public Enemy createSingleEnemy() {
-        return singleEnemy;
+    public BasicEnemy createSingleEnemy() {
+        return enemyFactory.obtainBasicEnemy();
     }
 
-    public Enemy createWaspEnemy() {
-        return waspEnemy;
+    public BasicEnemy createWaspEnemy() {
+        return enemyFactory.obtainBasicEnemy();
     }
 
-    public boolean detectPlayerCollisionEnemy(Player player, Enemy enemy){
+    public boolean detectPlayerCollisionEnemy(Player player, BasicEnemy basicEnemy){
 
-        boolean result = Intersector.overlaps(player.getBoundingRectangle(), enemy.getBoundingRectangle());
+        boolean result = Intersector.overlaps(player.getBoundingRectangle(), basicEnemy.getBoundingRectangle());
 
         if(result){
             playerHitTime = 0;
             player.takeHit(Constants.playerHitAcceleration);
-            enemy.takeHit(Constants.enemyHitAcceleration);
+            basicEnemy.takeHit(Constants.enemyHitAcceleration);
+            enemyFactory.disposeEnemy(basicEnemy);
         }else {
             playerHitTime++;
-
         }
-
 
         return result;
     }

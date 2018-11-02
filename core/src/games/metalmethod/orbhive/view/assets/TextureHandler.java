@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import games.metalmethod.orbhive.controller.Controller;
 import games.metalmethod.orbhive.model.Constants;
-import games.metalmethod.orbhive.model.gameobjects.entities.Enemy;
+import games.metalmethod.orbhive.model.gameobjects.entities.BasicEnemy;
 import games.metalmethod.orbhive.model.gameobjects.entities.EntityState;
 import games.metalmethod.orbhive.model.gameobjects.entities.Player;
 import games.metalmethod.orbhive.model.gameworld.GameWorld;
@@ -71,8 +71,8 @@ public class TextureHandler {
 
     private Controller controller;
 
-    private Enemy enemy;
-    private Enemy wasp;
+    private BasicEnemy basicEnemy;
+    private BasicEnemy wasp;
 
 
     public TextureHandler(Controller controller, GameWorld gameWorld, int gameHeight, int midPointY) {
@@ -98,7 +98,7 @@ public class TextureHandler {
         initGameObjects();
         initAssets();
 
-        enemy = controller.createSingleEnemy();
+        basicEnemy = controller.createSingleEnemy();
         wasp = controller.createWaspEnemy();
     }
 
@@ -277,8 +277,8 @@ public class TextureHandler {
 
 
         //ENEMIES RENDERING
-//        drawEnemyFirst(runTime, enemy);
-        drawEnemySecond(runTime, enemy);
+//        drawEnemyFirst(runTime, basicEnemy);
+        drawEnemySecond(runTime, basicEnemy);
 
         // drawPlayerExplosion(runTime);
 
@@ -292,7 +292,7 @@ public class TextureHandler {
 
         // Draw non-bitmap elements
 //        drawPlayerBoundingRect();
-//        drawEnemyBoundingRect(enemy);
+//        drawEnemyBoundingRect(basicEnemy);
     }
 
     private TextureRegion playerState() {
@@ -425,34 +425,34 @@ public class TextureHandler {
 
         }
 
-    private void drawEnemyBoundingRect(Enemy enemy) {
+    private void drawEnemyBoundingRect(BasicEnemy basicEnemy) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
         // Draw player bounding rectangle
         shapeRenderer.setColor(255f, 0f, 0f, 0.35f);
-        shapeRenderer.rect(enemy.getBoundingRectangle().x, enemy.getBoundingRectangle().y, enemy.getWidth(), enemy.getHeight());
+        shapeRenderer.rect(basicEnemy.getBoundingRectangle().x, basicEnemy.getBoundingRectangle().y, basicEnemy.getWidth(), basicEnemy.getHeight());
 
         shapeRenderer.end();
     }
 
-    private void drawEnemyFirst(float runTime, Enemy enemy) {
+    private void drawEnemyFirst(float runTime, BasicEnemy basicEnemy) {
 
         batcher.draw(
                 (TextureRegion) enemyFirstAnimation.getKeyFrame(runTime),
-                enemy.getPosition().x,
-                enemy.getPosition().y,
-                enemy.getWidth(),
-                enemy.getHeight()
+                basicEnemy.getPosition().x,
+                basicEnemy.getPosition().y,
+                basicEnemy.getWidth(),
+                basicEnemy.getHeight()
         );
     }
 
-    private void drawEnemySecond(float runTime, Enemy enemy) {
+    private void drawEnemySecond(float runTime, BasicEnemy basicEnemy) {
         batcher.draw(
                 (TextureRegion) enemySecondAnimation.getKeyFrame(runTime),
-                enemy.getPosition().x,
-                enemy.getPosition().y,
-                enemy.getWidth(),
-                enemy.getHeight()
+                basicEnemy.getPosition().x,
+                basicEnemy.getPosition().y,
+                basicEnemy.getWidth(),
+                basicEnemy.getHeight()
         );
     }
 
@@ -466,11 +466,11 @@ public class TextureHandler {
         );
     }
 
-    private void drawWasp(float runTime, Enemy enemy) {
+    private void drawWasp(float runTime, BasicEnemy basicEnemy) {
         batcher.draw(
                 (TextureRegion) enemyFirstWaspAnimation.getKeyFrame(runTime),
-                enemy.getPosition().x,
-                enemy.getPosition().y,
+                basicEnemy.getPosition().x,
+                basicEnemy.getPosition().y,
                 16,
                 16
         );

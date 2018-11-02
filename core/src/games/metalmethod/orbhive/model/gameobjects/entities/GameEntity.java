@@ -6,7 +6,7 @@ import games.metalmethod.orbhive.view.interfaces.Vector;
 
 /**
  * Abstract class for all game entities that can be controlled.
- * made to abstract Player, Enemy
+ * made to abstract Player, BasicEnemy
  */
 public abstract class GameEntity {
 
@@ -99,5 +99,9 @@ public abstract class GameEntity {
     abstract void reset();
 
     abstract void updateLifes();
+
+    public int getLifes(){
+        return lifes;
+    }
 
 }

@@ -6,11 +6,11 @@ import games.metalmethod.orbhive.view.interfaces.BaseRectangle;
 import games.metalmethod.orbhive.view.interfaces.GameMath;
 import games.metalmethod.orbhive.view.interfaces.Vector;
 
-public class Enemy extends GameEntity{
+public class BasicEnemy extends GameEntity {
 
     private boolean isScrolledLeft;
 
-    public Enemy(float x, float y, int width, int height, float speed){
+    public BasicEnemy(float x, float y, int width, int height, float speed){
         super(width, height, new Vector(x, y));
         position = new Vector(x, y);
         velocity = new Vector(speed, 0);
@@ -21,6 +21,7 @@ public class Enemy extends GameEntity{
 
         isScrolledLeft = false;
 
+        lifes = 1;
     }
 
 @Override
@@ -29,11 +30,6 @@ public class Enemy extends GameEntity{
         position.add(velocity.cpy().scl(delta));
 
         boundingRectangle.set(getPosition().x, getPosition().y , width, height);
-
-
-        if(verifyIsScrolledLeft() || verifyIsScrolledUp() || verifyIsScrolledDown()){
-            reset(Constants.enemyCreationX);
-        }
 
     }
 
@@ -52,15 +48,10 @@ public class Enemy extends GameEntity{
     public boolean verifyIsScrolledDown() {return position.y + height > Constants.screenHeight;
     }
 
-
-
     public void reset(float newX){
         position.x = newX;
         position.y = GameMath.randomY();
-        isScrolledLeft = false;
     }
-
-
 
 //    public void stop(){
 //        velocity.x = 0;
@@ -72,13 +63,11 @@ public class Enemy extends GameEntity{
         return isScrolledLeft;
     }
 
-
-
     @Override
     public void takeHit(int hitAmount) {
         reset(Constants.enemyCreationX);
         System.out.println("    enemyhit");
-
+        lifes--;
     }
 
     @Override
