@@ -4,20 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import games.metalmethod.orbhive.controller.Controller;
-import games.metalmethod.orbhive.model.gameobjects.entities.Player;
-import games.metalmethod.orbhive.model.gameworld.GameWorld;
 
 public class InputHandler implements InputProcessor {
 
     private Controller controller;
-    private GameWorld gameWorld;
-    private Player player;
 
     public InputHandler(Controller controller) {
-
         this.controller = controller;
-        this.gameWorld = controller.getGameWorld();
-        this.player = controller.getPlayer();
     }
 
     @Override
