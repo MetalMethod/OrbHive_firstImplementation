@@ -2,8 +2,8 @@ package games.metalmethod.orbhive.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import games.metalmethod.orbhive.controller.Controller;
-import games.metalmethod.orbhive.model.Constants;
+import games.metalmethod.orbhive.Controller;
+import games.metalmethod.orbhive.Constants;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {

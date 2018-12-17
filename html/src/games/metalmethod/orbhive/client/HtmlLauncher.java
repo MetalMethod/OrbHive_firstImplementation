@@ -3,7 +3,7 @@ package games.metalmethod.orbhive.client;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import games.metalmethod.orbhive.controller.Controller;
+import games.metalmethod.orbhive.Controller;
 
 public class HtmlLauncher extends GwtApplication {
 
