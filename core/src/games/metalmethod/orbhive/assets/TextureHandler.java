@@ -245,6 +245,11 @@ public class TextureHandler {
         enemyFirstWaspDeathAnimation.setPlayMode(Animation.PlayMode.NORMAL);
     }
 
+    public void dispose(){
+        batcher.dispose();
+        shapeRenderer.dispose();
+    }
+
     /**
      * runTime is responsible to determine which frame the player animation should display.
      * The Animation object will use this value (and the frame duration) to determine which TextureRegion to display.

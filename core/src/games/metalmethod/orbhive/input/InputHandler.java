@@ -9,70 +9,65 @@ public class InputHandler implements InputProcessor {
     private Controller controller;
 
     public InputHandler(Controller controller) {
-
         this.controller = controller;
     }
 
     @Override
     public boolean keyDown(int keycode) {
-        // Gdx.app.log("key pressed: ", String.valueOf(keycode));
-
+        //        Gdx.app.log("key pressed: ", String.valueOf(keycode));
         switch (keycode) {
             case Input.Keys.W:
             case Input.Keys.UP: {
-                this.movePlayerUp();
+                controller.movePlayerUp();
                 break;
             }
             case Input.Keys.D:
             case Input.Keys.RIGHT: {
-                this.movePlayerForward();
+                controller.movePlayerForward();
                 break;
             }
             case Input.Keys.S:
             case Input.Keys.DOWN: {
-                this.movePlayerDown();
+                controller.movePlayerDown();
                 break;
             }
             case Input.Keys.A:
             case Input.Keys.LEFT: {
-                this.movePlayerBack();
-                break;
-            }
-            case Input.Keys.SPACE:
-            case Input.Keys.M: {
-                this.playerShoot();
+                controller.movePlayerBack();
                 break;
             }
 
+            case Input.Keys.SPACE:
+            case Input.Keys.M: {
+                controller.playerShoot();
+            }
         }
         return true;
     }
 
-    private void playerShoot() {
-        controller.playerShoot();
-    }
 
     @Override
     public boolean keyUp(int keycode) {
         switch (keycode) {
             case Input.Keys.W:
             case Input.Keys.UP: {
-                stopMovePlayerUp();
+                controller.stopMovePlayerY();
                 break;
             }
-            case Input.Keys.F:
+
+            case Input.Keys.D:
             case Input.Keys.RIGHT: {
-                stopMovePlayerForward();
+                controller.stopMovePlayerX();
                 break;
             }
             case Input.Keys.S:
             case Input.Keys.DOWN: {
-                stopMovePlayerDown();
+                controller.stopMovePlayerY();
                 break;
             }
             case Input.Keys.A:
             case Input.Keys.BACK: {
-                stopMovePlayerBack();
+                controller.stopMovePlayerY();
                 break;
             }
         }
@@ -107,38 +102,6 @@ public class InputHandler implements InputProcessor {
     @Override
     public boolean scrolled(int amount) {
         return false;
-    }
-
-    private void movePlayerUp() {
-        controller.movePlayerUp();
-    }
-
-    private void movePlayerForward() {
-        controller.movePlayerForward();
-    }
-
-    private void movePlayerBack() {
-        controller.movePlayerBack();
-    }
-
-    private void movePlayerDown() {
-        controller.movePlayerDown();
-    }
-
-    private void stopMovePlayerUp() {
-        controller.stopMovePlayerY();
-    }
-
-    private void stopMovePlayerForward() {
-        controller.stopMovePlayerX();
-    }
-
-    private void stopMovePlayerDown() {
-        controller.stopMovePlayerY();
-    }
-
-    private void stopMovePlayerBack() {
-        controller.stopMovePlayerX();
     }
 
     private void stopPlayer() {

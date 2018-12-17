@@ -64,6 +64,7 @@ public class Controller extends Game {
     @Override
     public void dispose() {
         super.dispose();
+
         AssetLoader.dispose();
     }
 
