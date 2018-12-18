@@ -52,10 +52,11 @@ public class Player extends GameEntity {
     }
 
     @Override
-    void reset() {
+    public void reset() {
 
     }
 
+    @Override
     public EntityState getState() {
         switch (lifes) {
             case 3:

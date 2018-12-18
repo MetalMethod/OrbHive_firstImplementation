@@ -1,7 +1,7 @@
 package games.metalmethod.orbhive.gameobjects.entities;
 
+import com.badlogic.gdx.math.Rectangle;
 import games.metalmethod.orbhive.Constants;
-import games.metalmethod.orbhive.helpers.BaseRectangle;
 import games.metalmethod.orbhive.helpers.Vector;
 
 /**
@@ -26,7 +26,7 @@ public abstract class GameEntity {
     /**
      * Object for collision detection
      */
-    protected BaseRectangle boundingRectangle;
+    protected Rectangle boundingRectangle;
 
     protected EntityState currentState;
     protected int lifes;
@@ -43,24 +43,25 @@ public abstract class GameEntity {
 
         this.position = position;
         velocity = new Vector(0, 0);
-        acceleration = new Vector(0,0);
+        acceleration = new Vector(0, 0);
 
+        boundingRectangle = new Rectangle();
 
-        boundingRectangle = new BaseRectangle();
-
-        this.currentState = EntityState.FULL;
-        this.lifes = Constants.initialEntityLives;
+        currentState = EntityState.FULL;
+        lifes = Constants.initialEntityLives;
     }
 
     /***
-     *r
+     *
      * Update , called every frame
      *
      * @param delta
      */
     abstract void update(float delta);
 
-    abstract EntityState getState();
+    public EntityState getState() {
+        return currentState;
+    };
 
     public Vector getPosition() {
         return position;
@@ -87,14 +88,14 @@ public abstract class GameEntity {
         velocity.y = 0;
     }
 
-    public BaseRectangle getBoundingRectangle() {
+    public Rectangle getBoundingRectangle() {
         return boundingRectangle;
     }
 
     abstract void takeHit(int hitAmount);
 
     /**
-     *  Override this method in subclasses for specific behaviors
+     * Override this method in subclasses for specific behaviors
      */
     abstract void reset();
 

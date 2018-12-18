@@ -4,11 +4,8 @@ import games.metalmethod.orbhive.helpers.Vector;
 
 public class Bullet extends GameEntity {
 
-
     public Bullet(Player player) {
-
         super(10, 5, new Vector(player.getPosition().x, player.getPosition().y));
-
     }
 
     @Override
@@ -17,8 +14,8 @@ public class Bullet extends GameEntity {
     }
 
     @Override
-    EntityState getState() {
-        return null;
+    public EntityState getState() {
+        return EntityState.FULL;
     }
 
     @Override

@@ -18,7 +18,7 @@ public class Enemy extends GameEntity{
         this.height = height;
 
         isScrolledLeft = false;
-
+        currentState = EntityState.FULL;
     }
 
 @Override
@@ -36,8 +36,8 @@ public class Enemy extends GameEntity{
     }
 
     @Override
-    EntityState getState() {
-        return null;
+    public EntityState getState() {
+        return currentState;
     }
 
     // check if enemy went out of screen
@@ -56,6 +56,7 @@ public class Enemy extends GameEntity{
         position.x = newX;
         position.y = GameMath.randomY();
         isScrolledLeft = false;
+        currentState = EntityState.FULL;
     }
 
 
@@ -74,9 +75,9 @@ public class Enemy extends GameEntity{
 
     @Override
     public void takeHit(int hitAmount) {
-        reset(Constants.enemyCreationX);
         System.out.println("    enemyhit");
-
+        currentState = EntityState.DEAD;
+        reset(Constants.enemyCreationX);
     }
 
     @Override
