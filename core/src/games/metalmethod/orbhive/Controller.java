@@ -12,6 +12,8 @@ import games.metalmethod.orbhive.assets.AssetLoader;
 import games.metalmethod.orbhive.helpers.Vector;
 import games.metalmethod.orbhive.screens.GameScreen;
 
+import static games.metalmethod.orbhive.Constants.*;
+
 
 public class Controller extends Game {
 
@@ -31,7 +33,7 @@ public class Controller extends Game {
 
     @Override
     public void create() {
-        Gdx.app.log("Controller", "created");
+        // Gdx.app.log("Controller", "created");
 
         AssetLoader.load();
         enemyFactory = new EnemyFactory();
@@ -68,17 +70,11 @@ public class Controller extends Game {
         AssetLoader.dispose();
     }
 
-
-    public GameScreen getGameScreen() {
-        return gameScreen;
-    }
-
     public Player getPlayer() {
         return player;
     }
 
     public void movePlayerUp() {
-
         player.setVelocity((Vector) player.getVelocity().add(0, -Constants.movementVelocity));
         isPlayerMoving = true;
     }
@@ -115,27 +111,26 @@ public class Controller extends Game {
 
     public void detectWalls() {
         //left
-        if (player.getPosition().x < 5) {
-            player.setPosition((Vector) player.getPosition().set(5, player.getPosition().y));
+        if (player.getPosition().x < screenPaddingLeft) {
+            player.setPosition((Vector) player.getPosition().set(screenPaddingLeft, player.getPosition().y));
         }
         //right
-        if (player.getPosition().x > 410) {
-            player.setPosition((Vector) player.getPosition().set(410, player.getPosition().y));
+        if (player.getPosition().x > screenWidth - screenPaddingRight) {
+            player.setPosition((Vector) player.getPosition().set(screenWidth - screenPaddingRight, player.getPosition().y));
         }
         //top
-        if (player.getPosition().y < 0) {
-            player.setPosition((Vector) player.getPosition().set(player.getPosition().x, 0));
+        if (player.getPosition().y < screenPaddingTop) {
+            player.setPosition((Vector) player.getPosition().set(player.getPosition().x, screenPaddingTop));
         }
         //down
-        if (player.getPosition().y > 220) {
-            player.setPosition((Vector) player.getPosition().set(player.getPosition().x, 220));
+        if (player.getPosition().y > screenHeight - screenPaddingBottom) {
+            player.setPosition((Vector) player.getPosition().set(player.getPosition().x, screenHeight - screenPaddingBottom));
         }
     }
 
     public boolean isPlayerMoving() {
         return isPlayerMoving;
     }
-
 
     public Enemy createSingleEnemy() {
         return singleEnemy;
@@ -155,9 +150,7 @@ public class Controller extends Game {
             enemy.takeHit(Constants.enemyHitAcceleration);
         }else {
             playerHitTime++;
-
         }
-
 
         return result;
     }
@@ -190,13 +183,10 @@ public class Controller extends Game {
 //        }
 
         return EntityState.DEAD;
-
     }
-
 
     public void playerShoot() {
         player.shoot();
-
     }
 
     public boolean isPlayerShooting() {

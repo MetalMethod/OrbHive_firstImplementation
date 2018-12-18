@@ -8,7 +8,7 @@ public class Player extends GameEntity {
     public Player(int width, int height, Vector position) {
         super(width, height, position);
 
-        this.acceleration = new Vector(Constants.wind, Constants.gravity);
+        acceleration = new Vector(Constants.wind, Constants.gravity);
 
         currentState = EntityState.FULL;
         lifes = Constants.initialEntityLives;
@@ -18,16 +18,15 @@ public class Player extends GameEntity {
         velocity.add(acceleration.cpy().scl(delta));
         position.add(velocity.cpy().scl(delta));
 
-
-        boundingRectangle.set(getPosition().x, getPosition().y , width, height);
+        boundingRectangle.set(getPosition().x, getPosition().y, width, height);
 
         updateLifes();
 
     }
 
     protected void updateLifes() {
-        if (this.lifes < 1) {
-            this.lifes = Constants.initialEntityLives;
+        if (lifes < 1) {
+            lifes = Constants.initialEntityLives;
         }
     }
 
@@ -44,11 +43,11 @@ public class Player extends GameEntity {
     }
 
     public void takeHit(int hitAmount) {
-        this.velocity.set(this.getVelocity().add(-hitAmount, 0));
+        velocity.set(getVelocity().add(-hitAmount, 0));
 
-        this.lifes--;
+        lifes--;
 
-        System.out.println("hit. remaining lifes: " + String.valueOf(this.lifes));
+        System.out.println("hit. remaining lifes: " + String.valueOf(lifes));
 
     }
 
@@ -58,7 +57,7 @@ public class Player extends GameEntity {
     }
 
     public EntityState getState() {
-        switch (this.lifes) {
+        switch (lifes) {
             case 3:
                 currentState = EntityState.FULL;
                 break;
@@ -75,7 +74,12 @@ public class Player extends GameEntity {
         return currentState;
     }
 
-    public void shoot(){
+    public void shoot() {
         System.out.println("shoot");
     }
 }
+
+
+
+
+

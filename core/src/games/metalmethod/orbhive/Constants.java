@@ -6,6 +6,11 @@ public class Constants {
     public static final int screenWidth = 455;
     public static final int screenHeight = 256;
 
+    public static final int screenPaddingLeft = 5;
+    public static final int screenPaddingRight = 45;
+    public static final int screenPaddingTop = 0;
+    public static final int screenPaddingBottom = 36;
+
     public static final int enemyCreationX = screenWidth + 20;
 
     public static final int playerSize = 40;

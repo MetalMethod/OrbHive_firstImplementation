@@ -21,16 +21,19 @@ public class InputHandler implements InputProcessor {
                 controller.movePlayerUp();
                 break;
             }
+
             case Input.Keys.D:
             case Input.Keys.RIGHT: {
                 controller.movePlayerForward();
                 break;
             }
+
             case Input.Keys.S:
             case Input.Keys.DOWN: {
                 controller.movePlayerDown();
                 break;
             }
+
             case Input.Keys.A:
             case Input.Keys.LEFT: {
                 controller.movePlayerBack();
@@ -66,8 +69,8 @@ public class InputHandler implements InputProcessor {
                 break;
             }
             case Input.Keys.A:
-            case Input.Keys.BACK: {
-                controller.stopMovePlayerY();
+            case Input.Keys.LEFT: {
+                controller.stopMovePlayerX();
                 break;
             }
         }
